@@ -2,7 +2,7 @@
 .artist-head{
     height: 140px;
     width: 100%;
-    background-image: url("../img/albums/Muse-group.png");
+    /* background-image: url("../img/albums/Muse-group.png"); */
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -89,8 +89,6 @@
     .play-img{
         width: 17px;
     }
-    .content{
-
-    }
+    
 
 }
