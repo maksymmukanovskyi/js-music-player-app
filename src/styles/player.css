@@ -12,8 +12,22 @@
 }
 
 .music-controller{
-    display: block;
-    margin: 24px auto;
-    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 15%;
     height: auto;
+    margin: auto;
+    justify-content: space-between;
+
+}
+.prev, .play, .next{
+    height: 40px;
+    width: 40px;
+    margin: 10px auto;
+    border: none;
+    color: rgb(75, 75, 75);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
 }

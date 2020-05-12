@@ -17,9 +17,12 @@
     left: 0;
 }
 
-.logo {
-    margin-bottom: 1.8rem;
+
+.logo{
+    width: 75px;
+    height: 75px;
     display: block;
+    margin: 5px auto;
 }
 
 .title {
