@@ -1,10 +1,10 @@
 .content {
-    padding: 1.625rem;
+    /* padding: 1.625rem; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    /* align-content: center; */
 }
 .none {
     display: none;
-
 }

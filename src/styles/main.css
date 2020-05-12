@@ -2,6 +2,11 @@
 
 @media (min-width: 768px) {
     .main {
-        flex-basis: 80%;
+        top: 77px;
+        flex-basis: 90%;
+        display: block;
+        position: relative;
+        left: 10%;
+        background-color:red;
     }
 }

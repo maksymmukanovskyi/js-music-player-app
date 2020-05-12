@@ -2,7 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    flex-wrap: wrap;
+    position: fixed;
+    z-index: +2;
+    left: 10%;
+    width: 90%;
+    /* flex-wrap: wrap; */
     font-family: var(--family);
     background-color: var(--serch);
     padding: 1.5rem 0.75rem 0;
@@ -10,11 +14,12 @@
 }
 
 .search__form {
-    flex-basis: 100%;
+     flex-basis: 50%;
     display: flex;
     align-items: center;
     justify-content: left;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;  
+    
 }
 
 .search__input {
@@ -24,7 +29,7 @@
     border: none;
     color: #4c4c4c;
     margin-right: 0.5rem;
-    flex-basis: 25%;
+    flex-basis: 65%;
 }
 
 .search__btn {
@@ -34,7 +39,7 @@
     color: var(--white);
     text-transform: uppercase;
     border-radius: 0.225rem;
-    flex-basis: 20%;
+    flex-basis: 40%;
 }
 
 .chart {
@@ -45,7 +50,7 @@
 .chart-list {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
 }
 

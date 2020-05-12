@@ -1,6 +1,6 @@
 .artist-card {
     flex-basis: 63%;
-    margin: 0 auto 1rem;
+    margin: 0.5rem 1.5rem;
     position: relative;
     font-family: var(--family);
 }
@@ -74,7 +74,7 @@
 
 @media (min-width: 1024px) {
     .artist-card {
-        flex-basis: 26%;
+        flex-basis: 11%;
     }
 
     .artist-card:nth-last-child(-n+4) {
