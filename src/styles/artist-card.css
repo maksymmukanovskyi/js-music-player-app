@@ -4,6 +4,20 @@
     position: relative;
     font-family: var(--family);
 }
+.artist-title > h1{
+    color: var(--white);
+    font-size: 70px;
+    text-align: center;
+    margin: 5px auto;
+}
+.artist-title{
+    display: block;
+    margin: auto;
+}
+.artist-card:hover{
+    transform: scale(1.1);
+    transition: transform 0.5s, filter 0.5s ease-in-out;
+}
 
 .artist-card:last-child {
     margin: 0 auto;
@@ -19,7 +33,7 @@
     z-index: -1;
     position: relative;
     top: -1.05rem;
-    width: 9.56rem;
+    /* width: 9.56rem; */
     margin: auto;
     padding: 1rem 0.5rem;
     border-radius: 0.125rem;
@@ -60,7 +74,7 @@
 
 @media (min-width: 1024px) {
     .artist-card {
-        flex-basis: 25%;
+        flex-basis: 26%;
     }
 
     .artist-card:nth-last-child(-n+4) {

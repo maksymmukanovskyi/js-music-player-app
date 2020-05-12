@@ -1,0 +1,19 @@
+.now-playing {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.52);
+    box-shadow: 0.625rem 0 0.625rem 0 rgba(0, 0, 0, 0.15);
+    font-family: var(--family);
+    position: absolute;
+    top: 90%;
+    /* left: -62.5rem; */
+    min-height: 10%;
+    transition: 1s;
+    z-index: 2;
+}
+
+.music-controller{
+    display: block;
+    margin: 24px auto;
+    width: fit-content;
+    height: auto;
+}
