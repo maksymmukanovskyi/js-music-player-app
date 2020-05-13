@@ -4,6 +4,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    
 }
 
 a {
@@ -24,4 +25,8 @@ img {
     max-width: 100%;
     height: auto;
     margin: auto;
+}
+body{
+    background-color: var(--main);
+
 }
