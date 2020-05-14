@@ -9,9 +9,13 @@
     font-size: 70px;
     text-align: center;
     margin: 5px auto;
+
 }
 .artist-title{
     display: block;
+    position: relative;
+    right: 22%;
+    width: 50%;
     margin: auto;
 }
 .artist-card:hover{

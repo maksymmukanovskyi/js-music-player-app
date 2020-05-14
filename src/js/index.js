@@ -1,6 +1,37 @@
 'use strict'
 import '../styles/styles.css'
 console.log('hello world');
+const API_KEY = '3818b23a1afa6fe7d3e14819840cafc5';
+// const SHARED_SECRET = 4d6463398d29c80b23da38978551ae0e;
+
+
+
+
+const ctx = new AudioContext();
+let audio;
+fetch(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=Believe&api_key=${API_KEY}&format=json`)
+.then(response => {
+    if(response.ok) return response.json();
+    throw new Error(`Error while fething: ${response.statusText}`)
+})
+.then(data => console.log(data.results.trackmatches.track[0].url))
+
+
+
+
+
+.catch(error => console.log(error));
+
+
+function playback(){
+    const playSound = ctx.createBufferSource();
+    playSound.buffer = audio;
+    playSound.connect(ctx.destination);
+    playSound.start(ctx.currentTime);
+}
+
+// window.addEventListener('click', playback);
+
 // const data = {
 //     "artist": {
 //         "name": "Cher",
