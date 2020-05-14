@@ -1,22 +1,24 @@
 import {elements} from './base';
 export const getInput = () => elements.searchInput.value;
 export const clearInput = () => elements.searchInput.value = '';
-export const clearResult = () => elements.searchContent.innerHTML = '';
+export const clearResults = () => elements.searchContent.innerHTML = '';
 
 const renderMusicSearch = music => {
     const markup = `
-    <li>
-        <a class="artist-card" href="#76767">
+        <a class="artist-card" href="#${music.id}">
             <figure>
-                    <img src="./assets/Ember.jpg" alt="artist" class="artist-card__img">
+                    <img src="${music.album.cover_medium}" alt="artist" class="artist-card__img">
                 <figcaption>
-                    <p class="artist-card__name">Rammstein</p>
-                    <p class="artist-card__number-albums">5 albums</p>
+                    <p class="artist-card__name">${music.artist.name}</p>
+                    <p class="artist-card__number-albums">${music.title}</p>
                 </figcaption>
             </figure>
         </a>
-                </li>
     `;
-    
+    elements.searchContent.insertAdjacentHTML('beforeend', markup);
 
 } 
+
+export const renderResults = (music) => {
+    music.forEach(renderMusicSearch);
+}

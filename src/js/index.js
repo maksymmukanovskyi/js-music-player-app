@@ -9,17 +9,6 @@ let chatsMethod = 'https://api.deezer.com/chart/';
 let songMethod = 'https://api.deezer.com/track/3135556';
 
 
-// fetch(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=eminem`)
-
-// .then(response => {
-//     if(response.ok) return response.json();
-//     throw new Error(`Error while fething: ${response.statusText}`)
-// })
-
-// .then(data => console.log(data))
-
-// .catch(error => console.log(error));
-
 const state = {};
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
 const controlSearch = async () => {
@@ -28,10 +17,12 @@ const controlSearch = async () => {
     if(query){
         state.search = new Search(query);
         searchView.clearInput();
+        searchView.clearResults();
 
         try{
             await state.search.getResults();
-            console.log(state.search);
+            searchView.renderResults(state.search.musicSearch.data.data)
+            console.log(state.search.musicSearch.data.data)
         }catch(error){
             alert('Something wrong with search....')
         }

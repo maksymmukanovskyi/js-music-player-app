@@ -3,6 +3,8 @@
     grid-template-columns: 20% 20% 20% 20% 20%;
     grid-template-rows: auto;
     justify-items: center;
+    column-gap: 10px;
+  row-gap: 15px;
     
 }
 .none {
