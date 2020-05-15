@@ -2,10 +2,10 @@
 
 @media (min-width: 768px) {
     .main {
-        top: 77px;
-        flex-basis: 87%;
+        top: 100px;
+        flex-basis: 85%;
         display: block;
         position: relative;
-        left: 10%;
+        left: 13.5%;
     }
 }
