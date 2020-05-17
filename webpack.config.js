@@ -37,10 +37,10 @@ module.exports = {
                 from: path.resolve(__dirname, './src/assets/favicon.png'),
                 to:path.resolve(__dirname, 'dist'), 
             },
-            {
-                from: path.resolve(__dirname, './src/assets/audio.svg'),
-                to:path.resolve(__dirname, 'dist'),
-              }
+            // {
+            //     from: path.resolve(__dirname, './src/assets/audio.svg'),
+            //     to:path.resolve(__dirname, 'dist'),
+            //   }
         ]),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'

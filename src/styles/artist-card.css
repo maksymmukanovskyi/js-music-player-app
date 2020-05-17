@@ -12,7 +12,7 @@
 
 .artist-card {
     /* flex-basis: 63%; */
-    margin: 0.5rem 1.5rem;
+    /* margin: 0.5rem 1.5rem; */
     /* position: relative; */
     font-family: var(--family);
 }
