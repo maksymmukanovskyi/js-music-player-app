@@ -1,18 +1,4 @@
-export const elements = {
-    searchInput: document.querySelector('.search__input'),
-    searchForm: document.querySelector('.search__form'),
-    searchContent: document.querySelector('.content'),
-    musicMainBox: document.querySelector('.main'),
-    mainContainer: document.querySelector('.container')
-}
-
-export const elementString = {
-    loader: 'scene',
-}
-
-export const renderLoader = parent => {
-    const loader = `
-    <div class = "${elementString.loader}">
+<!-- <div class="scene"> -->
     <svg 
     version="1.1" 
     id="dc-spinner" 
@@ -65,12 +51,4 @@ export const renderLoader = parent => {
         repeatCount="indefinite" />
       </path>
     </svg>
-    </div>
-    `;
-    parent.insertAdjacentHTML('afterbegin', loader);
-}
-
-export const clearLoader = () => {
-    const loader = document.querySelector(`.${elementString.loader}`);
-    if(loader) loader.parentElement.removeChild(loader);
-}
+  <!-- </div> -->

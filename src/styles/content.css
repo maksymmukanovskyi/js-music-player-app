@@ -34,10 +34,10 @@
 @media (min-width: 1024px) {
   .content {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 19% 19% 19% 19% 19%;
     grid-template-rows: min-content;
     justify-items: center;
-    column-gap: 10px;
+    column-gap: 1%;
   row-gap: 15px;
     
 }
