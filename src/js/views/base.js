@@ -3,7 +3,7 @@ export const elements = {
     searchForm: document.querySelector('.search__form'),
     searchContent: document.querySelector('.content'),
     musicMainBox: document.querySelector('.main'),
-    mainContainer: document.querySelector('.container')
+    mainContainer: document.querySelector('.container'),
 }
 
 export const elementString = {

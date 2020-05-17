@@ -24,11 +24,13 @@ const controlSearch = async () => {
             await state.search.getResults();
             searchView.renderResults(state.search.musicSearch.data.data)
             console.log(state.search.musicSearch.data.data)
+
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
             clearLoader();
         }
+
 
     }
 }
@@ -39,5 +41,7 @@ elements.searchForm.addEventListener('submit', e => {
 
     controlSearch();
 })
+
+window.addEventListener('scroll',searchView.scrollHandler)
 
 
