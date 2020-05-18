@@ -13,17 +13,19 @@ const state = {};
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
 const controlSearch = async () => {
     const query = searchView.getInput();
+    const increment = searchView.getIncrement();
 
-    if(query){
-        state.search = new Search(query);
+
+    // if(query){
+        state.search = new Search(query, increment);
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.mainContainer)
 
         try{
             await state.search.getResults();
-            searchView.renderResults(state.search.musicSearch.data.data)
-            console.log(state.search.musicSearch.data.data)
+            searchView.renderResults(state.search.musicSearch.data)
+            console.log(state.search.musicSearch.data.next)
 
             clearLoader();
         }catch(error){
@@ -33,15 +35,22 @@ const controlSearch = async () => {
 
 
     }
-}
+// }
 
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
-    
-
     controlSearch();
 })
 
-window.addEventListener('scroll',searchView.scrollHandler)
+window.addEventListener('scroll',searchView.scrollHandler);
+
+elements.searchContent.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if(btn){
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.musicSearch.data, goToPage)
+    }
+})
 
 
