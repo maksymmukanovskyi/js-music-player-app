@@ -22,44 +22,53 @@ const renderMusicSearch = music => {
 
 
 
-const createButtons = (page, type) => `
-    <div class="btn-inline results__btn--${type}" data-goto="${type === 'prev'? page - 1: page + 1}" type="button">
-        <span>PAGE ${type === 'prev'? page - 1: page + 1}</span>
+const createButtons = (type) => `
+    <div class="btn-inline results__btn--${type}"  type="button">
+        <span>${type}</span>
     </div>`;
 
 
 
-export const scrollHandler = () => {
-    console.log(pageYOffset)
+export const scrollHandler = (music) => {
+    // console.log(pageYOffset)
+    console.log(music.data.length)
     const pageBtns = document.querySelectorAll('.results__btn--prev, .results__btn--next')
-    pageBtns.forEach(el => pageYOffset > 1000 ? el.style.display = 'flex':el.style.display = 'none')
+    if(music.data.length > 15){
+        pageBtns.forEach(el => pageYOffset > 1000 ? el.style.display = 'flex':el.style.display = 'none')
+    }else{
+        pageBtns.forEach(el =>  el.style.display = 'flex')
+    }
+
+    
+    
 }
 
-const renderButtons = (page, numResults, resPerPage) => {
-    const pages = Math.ceil(numResults / resPerPage);
+const renderButtons = (music) => {
+    const pages = 0;
     let button;
-    if(page === 1 && pages > 1){
-        button = createButtons(page, 'next')
-    }else if(page < pages){
+    if(music.next && !music.prev){
+        button = createButtons('next');
+        
+    }else if(music.next  && music.prev ){
         button = `
-        ${button = createButtons(page, 'prev')}
-        ${button = createButtons(page, 'next')}
+        ${button = createButtons('prev')}
+        ${button = createButtons('next')}
         `
-    }else if(page === pages && pages > 1){
-        button = createButtons(page, 'prev')
+    }else if(!music.next && music.prev){
+        button = createButtons('prev')
     }
     elements.searchContent.insertAdjacentHTML('afterbegin' , button);
 }
 
 
 
-export const renderResults = (music, page = 1, resPerPage = 21) => {
-    const start = (page -1) * resPerPage;
-    const end = page * resPerPage;
-    // recipes.slice(start, end).forEach(renderRecipe)
+export const renderResults = (music, page = 1, resPerPage = 25) => {
+    // const start = (page -1) * resPerPage;
+    // const end = page * resPerPage;
+    // // recipes.slice(start, end).forEach(renderRecipe)
+    
 
 
-    music.data.slice(start, end).forEach(renderMusicSearch);
-    console.log(page)
-    renderButtons(page, music.total, resPerPage)
+    music.data.forEach(renderMusicSearch);
+    renderButtons(music)
 }

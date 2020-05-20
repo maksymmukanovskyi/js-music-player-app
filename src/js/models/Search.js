@@ -9,7 +9,7 @@ export default class Search{
             const result = await axios(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${this.query}`);
 
             this.musicSearch = result;
-            console.log('te sho shukau', this.musicSearch)
+            
 
         }catch(error){
             alert(error)
@@ -18,15 +18,16 @@ export default class Search{
 
     async getBtnResult(type){
         try{
-            const result = await axios(`https://cors-anywhere.herokuapp.com/${this.musicSearch.data.}${type}`);
-        this.musicSearch = result;
-        console.log('type result', this.musicSearch);
+            let link; 
+            type === 'next'? link = this.musicSearch.data.next: link = this.musicSearch.data.prev
+
+            const result = await axios(`https://cors-anywhere.herokuapp.com/${link}`);  
+            this.musicSearch = result;
 
             }catch(error){
             alert(error)
         }
     }
-
-   
-
 }
+
+

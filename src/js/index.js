@@ -36,21 +36,24 @@ const controlSearch = async () => {
     }
 }
 
-const buttonsSearch = async () => {
+const buttonsSearch = async (e) => {
     if(state){
         searchView.clearResults();
         renderLoader(elements.mainContainer)
-        let type = e.target.....
+        const btn = e.target.closest('.btn-inline');
+        
+        if(btn){
+            let type = btn.className.split('--')[1]
         try{
             await state.search.getBtnResult(type);
             searchView.renderResults(state.search.musicSearch.data)
             console.log(state.search.musicSearch.data)
-
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
             clearLoader();
         }
+    }
     }
 
     
@@ -64,7 +67,9 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 })
 
-window.addEventListener('scroll',searchView.scrollHandler);
+window.addEventListener('scroll',e =>{
+    searchView.scrollHandler(state.search.musicSearch.data) 
+});
 
 // elements.searchContent.addEventListener('click', e => {
 //     const btn = e.target.closest('.btn-inline');
@@ -74,5 +79,9 @@ window.addEventListener('scroll',searchView.scrollHandler);
 //         searchView.renderResults(state.search.musicSearch.data, goToPage)
 //     }
 // })
+
+elements.searchContent.addEventListener('click', e => {
+    buttonsSearch(e);
+})
 
 
