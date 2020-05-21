@@ -22,53 +22,54 @@ const renderMusicSearch = music => {
 
 
 
-const createButtons = (type) => `
-    <div class="btn-inline results__btn--${type}"  type="button">
-        <span>${type}</span>
-    </div>`;
 
 
 
-export const scrollHandler = (music) => {
-    // console.log(pageYOffset)
-    console.log(music.data.length)
-    const pageBtns = document.querySelectorAll('.results__btn--prev, .results__btn--next')
-    if(music.data.length > 15){
-        pageBtns.forEach(el => pageYOffset > 1000 ? el.style.display = 'flex':el.style.display = 'none')
-    }else{
-        pageBtns.forEach(el =>  el.style.display = 'flex')
+const scrollHandler = (pageBtns) => {
+        pageBtns.forEach(el => pageYOffset > 250 ? el.style.display = 'flex':el.style.display = 'none')
     }
 
-    
-    
-}
 
-const renderButtons = (music) => {
-    const pages = 0;
+const renderScroll = music => {
+        const pageBtns = document.querySelectorAll('.results__btn--prev, .results__btn--next');
+        
+            if(music.data.length > 10){
+                window.addEventListener('scroll',e =>{
+                    scrollHandler(pageBtns); 
+                });
+            }else{
+                pageBtns.forEach(el =>  el.style.display = 'flex')
+            }
+        }
+
+
+const createButtons = (page, type) => `
+    <div class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? page -1 : page +1}" type="button">
+        <span>Page ${type === 'prev' ? page -1 : page +1}</span>
+    </div>`;
+
+    
+const renderButtons = (page, music) => {
     let button;
     if(music.next && !music.prev){
-        button = createButtons('next');
+        button = createButtons(page,'next');
         
     }else if(music.next  && music.prev ){
         button = `
-        ${button = createButtons('prev')}
-        ${button = createButtons('next')}
+        ${button = createButtons(page, 'prev')}
+        ${button = createButtons(page, 'next')}
         `
     }else if(!music.next && music.prev){
-        button = createButtons('prev')
+        button = createButtons(page, 'prev')
     }
     elements.searchContent.insertAdjacentHTML('afterbegin' , button);
 }
 
 
-
-export const renderResults = (music, page = 1, resPerPage = 25) => {
-    // const start = (page -1) * resPerPage;
-    // const end = page * resPerPage;
-    // // recipes.slice(start, end).forEach(renderRecipe)
-    
-
+export const renderResults = (music, page = 1) => {
+    console.log(page)
 
     music.data.forEach(renderMusicSearch);
-    renderButtons(music)
+    renderButtons(page, music)
+    renderScroll(music)
 }

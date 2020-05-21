@@ -41,12 +41,12 @@ const buttonsSearch = async (e) => {
         searchView.clearResults();
         renderLoader(elements.mainContainer)
         const btn = e.target.closest('.btn-inline');
-        
+        const goToPage = parseInt(btn.dataset.goto, 10);
         if(btn){
             let type = btn.className.split('--')[1]
         try{
             await state.search.getBtnResult(type);
-            searchView.renderResults(state.search.musicSearch.data)
+            searchView.renderResults(state.search.musicSearch.data, goToPage)
             console.log(state.search.musicSearch.data)
             clearLoader();
         }catch(error){
@@ -67,9 +67,7 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 })
 
-window.addEventListener('scroll',e =>{
-    searchView.scrollHandler(state.search.musicSearch.data) 
-});
+
 
 // elements.searchContent.addEventListener('click', e => {
 //     const btn = e.target.closest('.btn-inline');
