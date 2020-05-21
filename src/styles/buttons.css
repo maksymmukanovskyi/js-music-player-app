@@ -23,7 +23,9 @@
     border-radius: 100% / 50%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    left: 163px;
+    /* left: 163px; */
+
+    float: left;
 }
 .results__btn--next{
     width: 75px;

@@ -34,11 +34,11 @@
 @media (min-width: 1024px) {
   .content {
     display: grid;
-    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-columns: 19.2% 19.2% 19.2% 19.2% 19.2%;
     grid-template-rows: min-content;
     justify-items: center;
     column-gap: 1%;
-  row-gap: 15px;
+  row-gap: 8px;
     
 }
 

@@ -3,9 +3,9 @@
 @media (min-width: 768px) {
     .main {
         top: 100px;
-        flex-basis: 85%;
+        flex-basis: 88%;
         display: block;
         position: relative;
-        left: 14%;
+        left: 12%;
     }
 }
