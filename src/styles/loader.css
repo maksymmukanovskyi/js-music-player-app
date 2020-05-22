@@ -10,9 +10,12 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.863);
-    z-index: 5;
+    z-index: 1;
   }
   .scene svg {
+    position: relative;
+    left: 5%;
+    top: 35px;
     width: 240px;
     height: 240px;
   }

@@ -57,20 +57,32 @@
 
             <main class="main">
                 <div class="artist-title">
-                <h1>Rammatein</h1>
                 </div>
                 <ul class="content">
                     <!-- POPULAR -->
                     
-                <li>
-                    <a class="artist-card" href="#76767">
-                            <figure>
+                <li class="card-container">
+                    <a class="artist-card" href="123">
+                        
+                        <figure>
                                 <img src="./assets/Ember.jpg" alt="artist" class="artist-card__img">
-                                <figcaption>
-                                    <p class="artist-card__name">Rammstein</p>
-                                    <p class="artist-card__number-albums">5 albums</p>
-                                </figcaption>
-                            </figure>
+                                <button class="music__love">
+                                <svg class="header__likes">
+                                    <use href="./sprite.svg#icon-heart-outlined"></use>
+                                </svg>
+                                </button>
+                                    <button class="media youtube__play">
+                                        <p>YOUTUBE PLAY</p>
+                                    </button>
+                                    <button class="media preview__play">
+                                        <p>PREVIEW PLAY</p>
+                                    </button>
+                            <figcaption>
+                                <p class="artist-card__name">${music.title}</p>
+                                <p class="artist-card__number-albums">${music.artist.name}</p>
+                            </figcaption>
+                                
+                        </figure>
                     </a>
                 </li>
                 

@@ -38,8 +38,40 @@
 span{
     display: block;
     position: relative;
-    transform: translate(10px, 73px);
+    transform: translate(16px, 60px);
     font-size: 14px;
     color: var(--white);
     font-family: var(--family);
+}
+
+
+.card-container:hover + .preview__play {
+    display: block;
+}
+
+
+.preview__play, .youtube__play{
+    display: none;
+    position: absolute;
+    font-size: var(--big);
+    color: var(--white);
+    width: 111px;
+    height: 65px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.767);
+    top: 27%;
+
+}
+
+.preview__play:hover, .youtube__play:hover{
+    color: var(--red);
+}
+.preview__play{
+    right: 0px;
+}
+.youtube__play{
+    left: 0px;
 }

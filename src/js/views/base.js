@@ -4,6 +4,8 @@ export const elements = {
     searchContent: document.querySelector('.content'),
     musicMainBox: document.querySelector('.main'),
     mainContainer: document.querySelector('.container'),
+    artistTitle: document.querySelector('.artist-title'),
+    cardContainer: document.querySelectorAll('.card-container'),
 }
 
 export const elementString = {

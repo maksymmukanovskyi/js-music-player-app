@@ -4,10 +4,17 @@
     transition: transform 0.5s, filter 0.5s ease-in-out;
 }
 
+
+
+
+
+
+
 .card-container{
     position: relative;
     margin: 11px;
 }
+
 
 
 .artist-card {
@@ -25,7 +32,6 @@
 }
 .artist-title{
     display: block;
-    position: relative;
     right: 22%;
     width: 50%;
     margin: auto;
@@ -87,3 +93,27 @@
     }
 
 }
+
+.music__love{
+    right: 7px;
+    width: fit-content;
+    top: 5px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.music__love svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: rgb(93, 93, 93);
+    /* filter: drop-shadow(0px 0px 1px #000000e7); */
+}
+
+  

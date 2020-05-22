@@ -19,6 +19,7 @@ const controlSearch = async () => {
         state.search = new Search(query);
         searchView.clearInput();
         searchView.clearResults();
+        searchView.clearTitle();
         renderLoader(elements.mainContainer)
 
         try{
@@ -40,6 +41,7 @@ const buttonsSearch = async (e) => {
     if(state){
         searchView.clearResults();
         renderLoader(elements.mainContainer)
+        searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
         const goToPage = parseInt(btn.dataset.goto, 10);
         if(btn){
@@ -80,6 +82,7 @@ elements.searchForm.addEventListener('submit', e => {
 
 elements.searchContent.addEventListener('click', e => {
     buttonsSearch(e);
+    
 })
 
 
