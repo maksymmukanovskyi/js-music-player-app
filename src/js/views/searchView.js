@@ -130,8 +130,8 @@ const renderButtons = (page, music) => {
 
 
 export const renderResults = (music, page = 1, type = 'artist') => {
-    music.data.forEach(el => renderMusicCard(el, type));
-    renderTitle(music);
-    renderButtons(page, music);
-    renderScroll(music);
+        music.data.forEach(el => renderMusicCard(el, type));
+        renderTitle(music);
+        renderButtons(page, music);
+        renderScroll(music);
 }

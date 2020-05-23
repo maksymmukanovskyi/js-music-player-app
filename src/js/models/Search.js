@@ -15,6 +15,14 @@ export default class Search{
             alert(error)
         }
     }
+    async getDefaultLoad(){
+        try {
+            const result = await axios(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/track?q=top music`);
+            this.musicSearch = result;
+        }catch(error){
+            alert(error)
+        }
+    }
 
     async getBtnResult(type){
         try{
