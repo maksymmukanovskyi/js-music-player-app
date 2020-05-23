@@ -6,6 +6,8 @@ export const elements = {
     mainContainer: document.querySelector('.container'),
     artistTitle: document.querySelector('.artist-title'),
     cardContainer: document.querySelectorAll('.card-container'),
+    songList:document.querySelector('.songs-list'),
+    listType:document.querySelector('.chart-list'),
 }
 
 export const elementString = {

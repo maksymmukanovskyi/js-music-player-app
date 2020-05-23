@@ -1,38 +1,81 @@
 import {elements} from './base';
 export const getInput = () => elements.searchInput.value;
 export const clearInput = () => elements.searchInput.value = '';
-export const clearResults = () => elements.searchContent.innerHTML = '';
+export const clearResults = () => [elements.searchContent,elements.songList].forEach(el => el.innerHTML = '');
 export const clearTitle = () => elements.artistTitle.innerHTML = '';
 
 
-const renderMusicCard = music => {
-    const markup = `
-    <li class="card-container">
-        <a class="artist-card" href="#${music.id}">
-            
-            <figure>
-                    <img src="${music.album.cover_medium}" alt="artist" class="artist-card__img">
-                    <button class="music__love">
-                    <svg class="header__likes">
-                        <use href="./sprite.svg#icon-heart-outlined"></use>
-                    </svg>
-                    </button>
-                    <button class="media youtube__play">
-                        <p>YOUTUBE PLAY</p>
-                    </button>
-                    <button class="media preview__play">
-                        <p>PREVIEW PLAY</p>
-                    </button>
-                <figcaption>
-                    <p class="artist-card__name">${music.title}</p>
-                    <p class="artist-card__number-albums">${music.artist.name}</p>
-                </figcaption>
-                    
-            </figure>
-        </a>
-    </li>
-    `;
-    elements.searchContent.insertAdjacentHTML('beforeend', markup);
+const renderMusicCard = (music, type) => {
+    
+
+const timeConvert = num =>{ 
+  var min = Math.floor(num / 60);  
+  var sec = num % 60;
+  return min + ":" + sec;         
+}
+    let markup;
+    if(type == 'artist'){
+        markup = `
+        <li class="card-container">
+            <a class="artist-card" href="#${music.artist.id}">
+                
+                <figure>
+                        <img src="${music.album.cover_medium}" alt="artist" class="artist-card__img">
+                        <button class="music__love">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                        </button>
+                        <button class="youtube__play">
+                            <p>YOUTUBE PLAY</p>
+                        </button>
+                        <button class="preview__play">
+                            <p>PREVIEW PLAY</p>
+                        </button>
+                    <figcaption>
+                        <p class="artist-card__number-albums">${music.artist.name}</p>
+                        <p class="artist-card__name">${music.title}</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+        `;
+    }else if(type === 'albums'){
+        markup = `
+        <a class="artist-card" href="#${music.album.id}">
+                            <figure>
+                                <img src="${music.album.cover_medium}" alt="albums-picture" class="artist-card__img">
+                                <figcaption>
+                                    <p class="artist-card__name">${music.album.title}</p>
+                                </figcaption>
+                            </figure>
+                            </a>
+        `
+    }else if(type === 'songs'){
+        markup =`
+                <li class="songs-item">
+                    <a class="songs-link" href="#${music.album.id}">
+                    <figure class="songs-item__figure">
+                         <button class="play">&#x23ef;</button>
+                        <figcaption class="songs-item__discription" >
+                             <div class="discription__left-part">
+                                 <p class="songs-item__music-name">${music.title}</p>
+                                <p class="songs-item__singer">${music.artist.name}</p>
+                            </div>
+                            <p class="songs-item__music-time">${timeConvert(music.duration)}</p>
+                        </figcaption>
+                    </figure>
+                </a>
+                </li>
+        `
+    }
+
+    if(type === 'songs'){
+        elements.songList.insertAdjacentHTML('beforeend', markup);
+    }else{
+        elements.searchContent.insertAdjacentHTML('beforeend', markup);
+    }
+    
 } 
 
 const renderTitle = (music) => {
@@ -86,10 +129,8 @@ const renderButtons = (page, music) => {
 }
 
 
-export const renderResults = (music, page = 1) => {
-    console.log(page)
-
-    music.data.forEach(renderMusicCard);
+export const renderResults = (music, page = 1, type = 'artist') => {
+    music.data.forEach(el => renderMusicCard(el, type));
     renderTitle(music);
     renderButtons(page, music);
     renderScroll(music);

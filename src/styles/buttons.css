@@ -45,17 +45,15 @@ span{
 }
 
 
-.card-container:hover + .preview__play {
-    display: block;
-}
+
 
 
 .preview__play, .youtube__play{
-    display: none;
+    display: block;
     position: absolute;
     font-size: var(--big);
     color: var(--white);
-    width: 111px;
+    width: 50%;
     height: 65px;
     border: none;
     cursor: pointer;

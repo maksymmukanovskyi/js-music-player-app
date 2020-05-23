@@ -52,6 +52,7 @@
 }
 
 .chart-list__item {
+    cursor: pointer;
     padding: 1rem 1.5rem;
     border-bottom: 0.1875rem solid transparent;
     text-transform: uppercase;
@@ -83,6 +84,7 @@
     display: flex;
 }
 .chart-list__item {
+    cursor: pointer;
     padding: 2px;
     padding-bottom: 15px;
     font-size: 14px;
@@ -117,6 +119,7 @@
     display: flex;
 }
 .chart-list__item {
+    cursor: pointer;
     padding: 2px; 
     padding-bottom: 15px;
     font-size: 14px;
@@ -151,7 +154,7 @@
 }
 
 .chart-list__item {
-    
+    cursor: pointer;
     font-size: 16px;
     padding: 1rem 1.5rem;
     border-bottom: 0.1875rem solid transparent;
