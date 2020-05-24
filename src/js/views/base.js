@@ -11,6 +11,7 @@ export const elements = {
 }
 
 export const limitString = (string , limit = 15) => {
+  console.log('dfghjk')
   const newString = [];
   if(string.length > limit){
     string.split(' ').reduce((acc, el) => {
