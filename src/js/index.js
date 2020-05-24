@@ -104,8 +104,11 @@ elements.searchContent.addEventListener('click', e => {
 
 elements.listType.addEventListener('click', e => {
     if(e.target.nodeName !== 'LI') return;
+    let tabs = document.querySelectorAll('.chart-list__item');
+    tabs.forEach(el => el.classList.remove('active'))
+    e.target.classList.add('active');
     headerFiltering(e);
 })
-window.addEventListener('load',controlSearch)
+window.addEventListener('load', controlSearch)
 
 

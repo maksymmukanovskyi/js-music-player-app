@@ -34,7 +34,7 @@ const timeConvert = num =>{
                         </button>
                     <figcaption>
                         <p class="artist-card__number-albums">${music.artist.name}</p>
-                        <p class="artist-card__name">${music.title}</p>
+                        <p class="artist-card__name">${elements.limitString(music.title)}</p>
                     </figcaption>
                 </figure>
             </a>
@@ -46,7 +46,7 @@ const timeConvert = num =>{
                             <figure>
                                 <img src="${music.album.cover_medium}" alt="albums-picture" class="artist-card__img">
                                 <figcaption>
-                                    <p class="artist-card__name">${music.album.title}</p>
+                                    <p class="artist-card__name">${elements.limitString(music.album.title)}</p>
                                 </figcaption>
                             </figure>
                             </a>
@@ -59,7 +59,7 @@ const timeConvert = num =>{
                          <button class="play">&#x23ef;</button>
                         <figcaption class="songs-item__discription" >
                              <div class="discription__left-part">
-                                 <p class="songs-item__music-name">${music.title}</p>
+                                 <p class="songs-item__music-name">${elements.limitString(music.title)}</p>
                                 <p class="songs-item__singer">${music.artist.name}</p>
                             </div>
                             <p class="songs-item__music-time">${timeConvert(music.duration)}</p>

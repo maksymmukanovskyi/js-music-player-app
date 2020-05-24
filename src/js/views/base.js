@@ -10,6 +10,20 @@ export const elements = {
     listType:document.querySelector('.chart-list'),
 }
 
+export const limitString = (string , limit = 15) => {
+  const newString = [];
+  if(string.length > limit){
+    string.split(' ').reduce((acc, el) => {
+      if(acc + el.length < limit){
+        newString.push(el);
+      }
+      return acc + el.length;
+    }, 0)
+    return  `${newString.join(' ')}...`
+  }
+  return string;
+}
+
 export const elementString = {
     loader: 'scene',
 }
