@@ -1,4 +1,4 @@
-import {elements, limitString} from './base';
+import {elements, limitString, musicPlayList} from './base';
 export const getInput = () => elements.searchInput.value;
 export const clearInput = () => elements.searchInput.value = '';
 export const clearResults = () => [elements.searchContent,elements.songList].forEach(el => el.innerHTML = '');
@@ -8,11 +8,7 @@ export const clearTitle = () => elements.artistTitle.innerHTML = '';
 const renderMusicCard = (music, type) => {
     
 
-const timeConvert = num =>{ 
-  var min = Math.floor(num / 60);  
-  var sec = num % 60;
-  return min + ":" + sec;         
-}
+
     let markup;
     if(type == 'artist'){
         markup = `
@@ -52,22 +48,7 @@ const timeConvert = num =>{
                             </a>
         `
     }else if(type === 'songs'){
-        markup =`
-                <li class="songs-item">
-                    <a class="songs-link" href="#${music.album.id}">
-                    <figure class="songs-item__figure">
-                         <button class="play">&#x23ef;</button>
-                        <figcaption class="songs-item__discription" >
-                             <div class="discription__left-part">
-                                 <p class="songs-item__music-name">${limitString(music.title)}</p>
-                                <p class="songs-item__singer">${music.artist.name}</p>
-                            </div>
-                            <p class="songs-item__music-time">${timeConvert(music.duration)}</p>
-                        </figcaption>
-                    </figure>
-                </a>
-                </li>
-        `
+        markup = musicPlayList(music);
     }
 
     if(type === 'songs'){

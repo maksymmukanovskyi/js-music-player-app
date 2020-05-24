@@ -1,7 +1,11 @@
 'use strict'
 import '../styles/styles.css'
 import Search from './models/Search';
+import Music from './models/Music';
+
 import * as searchView from './views/searchView';
+import * as musicView from './views/musicView';
+
 import {elements, renderLoader, clearLoader, elementString} from './views/base';
 
 let albumMethods = 'https://api.deezer.com/album/103248';
@@ -111,4 +115,33 @@ elements.listType.addEventListener('click', e => {
 })
 window.addEventListener('load', controlSearch)
 
+////////////////////////MUSIC CONTROLLER/////////////////////////////
 
+const controlMusic = async () => {
+    const id = window.location.hash.replace('#', '');
+    if(id){
+        searchView.clearResults();
+        renderLoader(elements.musicMainBox);
+        searchView.clearTitle();
+        state.music = new Music(id);
+        try{
+            //get recipe data and parse ingredients
+        await state.music.getArtist()
+        //claculate servings and time
+        
+
+        //render recipe
+        clearLoader();
+        console.log('state', state.music)
+        musicView.renderMusic(
+            state.music,
+            )
+        
+        }catch(error){
+            clearLoader();
+            alert('Error processin music!')
+        }
+    }
+}
+
+window.addEventListener('hashchange', controlMusic);

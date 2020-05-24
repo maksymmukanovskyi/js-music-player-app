@@ -10,6 +10,12 @@ export const elements = {
     listType:document.querySelector('.chart-list'),
 }
 
+export const timeConvert = num =>{ 
+  var min = Math.floor(num / 60);  
+  var sec = num % 60;
+  return min + ":" + sec;         
+}
+
 export const limitString = (string , limit = 15) => {
   console.log('dfghjk')
   const newString = [];
@@ -28,6 +34,23 @@ export const limitString = (string , limit = 15) => {
 export const elementString = {
     loader: 'scene',
 }
+
+export const musicPlayList = music => `
+<li class="songs-item">
+    <a class="songs-link" href="#${music.album.id}">
+    <figure class="songs-item__figure">
+         <button class="play">&#x23ef;</button>
+        <figcaption class="songs-item__discription" >
+             <div class="discription__left-part">
+                 <p class="songs-item__music-name">${limitString(music.title)}</p>
+                <p class="songs-item__singer">${music.artist.name}</p>
+            </div>
+            <p class="songs-item__music-time">${timeConvert(music.duration)}</p>
+        </figcaption>
+    </figure>
+</a>
+</li>
+`;
 
 export const renderLoader = parent => {
     const loader = `
