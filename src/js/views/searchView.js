@@ -12,8 +12,8 @@ const renderMusicCard = (music, type) => {
     let markup;
     if(type == 'artist'){
         markup = `
-        <li class="card-container">
-            <a class="artist-card" href="#${music.artist.id}">
+        <li class="artist-card">
+            <a  href="#${music.artist.id}">
                 
                 <figure>
                         <img src="${music.album.cover_medium}" alt="artist" class="artist-card__img">
@@ -38,7 +38,8 @@ const renderMusicCard = (music, type) => {
         `;
     }else if(type === 'albums'){
         markup = `
-        <a class="artist-card" href="#${music.album.id}">
+        <li class="album-card">
+        <a  href="#${music.album.id}">
                             <figure>
                                 <img src="${music.album.cover_medium}" alt="albums-picture" class="artist-card__img">
                                 <figcaption>
@@ -46,6 +47,7 @@ const renderMusicCard = (music, type) => {
                                 </figcaption>
                             </figure>
                             </a>
+                            </li>
         `
     }else if(type === 'songs'){
         markup = musicPlayList(music);

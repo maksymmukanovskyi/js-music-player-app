@@ -18,7 +18,6 @@ export const timeConvert = num =>{
 }
 
 export const limitString = (string , limit = 15) => {
-  console.log('dfghjk')
   const newString = [];
   if(string.length > limit){
     string.split(' ').reduce((acc, el) => {
@@ -38,7 +37,7 @@ export const elementString = {
 
 export const musicPlayList = music => `
 <li class="songs-item">
-    <a class="songs-link" href="#${music.album.id}">
+    <a class="songs-link" href="#${music.artist.id}">
     <figure class="songs-item__figure">
          <button class="play">&#x23ef;</button>
         <figcaption class="songs-item__discription" >

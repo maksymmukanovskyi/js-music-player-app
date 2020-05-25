@@ -115,18 +115,37 @@ window.addEventListener('load', controlSearch)
 
 ////////////////////////MUSIC CONTROLLER/////////////////////////////
 
-const controlMusic = async () => {
+const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
-    console.log('state', id)
     if(id){
+
+    if(e.target.closest('.artist-card')){
+
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
+
         state.music = new Music(id);
         try{
         await state.music.getArtist()
+        musicView.renderArtist(state.music)
+        clearLoader();
+
         
-        musicView.renderMusic(state.music)
+        }catch(error){
+            clearLoader();
+            alert('Error processin music!')
+        }
+    }else if(e.target.closest('.album-card')){
+        searchView.clearResults();
+        renderLoader(elements.mainContainer);
+        searchView.clearTitle();
+
+        state.music = new Music(id);
+
+        try{
+        await state.music.getAlbum();
+        musicView.renderAlbum(state.music)
         clearLoader();
 
         
@@ -135,6 +154,11 @@ const controlMusic = async () => {
             alert('Error processin music!')
         }
     }
+    
+       
+    }
 }
 
-window.addEventListener('hashchange', controlMusic);
+elements.musicMainBox.addEventListener('click', e => {
+    controlMusic(e)
+});
