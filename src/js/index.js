@@ -60,10 +60,10 @@ const controlSearch = async () => {
 const buttonsSearch = async (e) => {
     if(state){
         searchView.clearResults();
-        renderLoader(elements.mainContainer)
+        // renderLoader(elements.mainContainer)
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
-        const goToPage = parseInt(btn.dataset.goto, 10);
+        // const goToPage = parseInt(btn.dataset.goto, 10);
         if(btn){
             let type = btn.className.split('--')[1]
         try{
@@ -82,13 +82,11 @@ const buttonsSearch = async (e) => {
 const headerFiltering = (e) => {
     if(state){
         searchView.clearResults();
-        renderLoader(elements.mainContainer);
         searchView.clearTitle();
         window.pageYOffset;
         const btnType = e.target.textContent.toLowerCase();
         state.search.activeTab = btnType;
         searchView.renderResults(state.search.musicSearch.data, null, btnType);
-        clearLoader();
         
     }
 }
@@ -119,23 +117,18 @@ window.addEventListener('load', controlSearch)
 
 const controlMusic = async () => {
     const id = window.location.hash.replace('#', '');
+    console.log('state', id)
     if(id){
         searchView.clearResults();
-        renderLoader(elements.musicMainBox);
+        renderLoader(elements.mainContainer);
         searchView.clearTitle();
         state.music = new Music(id);
         try{
-            //get recipe data and parse ingredients
         await state.music.getArtist()
-        //claculate servings and time
         
-
-        //render recipe
+        musicView.renderMusic(state.music)
         clearLoader();
-        console.log('state', state.music)
-        musicView.renderMusic(
-            state.music,
-            )
+
         
         }catch(error){
             clearLoader();

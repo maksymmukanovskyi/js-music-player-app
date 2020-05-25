@@ -1,6 +1,7 @@
-import {elements} from './base';
+import {elements, musicPlayList} from './base';
 
 export const renderMusic = (music) => {
+    console.log(music)
     const markup = `
     <figure class="music__fig">
                 <img src="${music.picture}" alt="${music.title}" class="recipe__img">
@@ -14,12 +15,14 @@ export const renderMusic = (music) => {
                     <span class="music__info-data">${music.albumNumbers}</span>
                 </div>
                 <div class = "music__container">
-
+                    <ul class="music__playlist">
+                    ${music.tracklist.map(el => musicPlayList(el))}
+                    <ul>
                 </div>
            
             </div>
     `;
 
 
-    elements.musicMainBox.insertAdjacentHTML('afterbegin', markup);
+    elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
 }

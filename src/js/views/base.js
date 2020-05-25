@@ -8,6 +8,7 @@ export const elements = {
     cardContainer: document.querySelectorAll('.card-container'),
     songList:document.querySelector('.songs-list'),
     listType:document.querySelector('.chart-list'),
+    musicContainer:document.querySelector('.music__view')
 }
 
 export const timeConvert = num =>{ 

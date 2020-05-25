@@ -4,15 +4,17 @@ export default class Music{
     constructor(id){
         this.id = id;
     }
-
     async getArtist(){
         try{
-            const result = await axios(`https://api.deezer.com/artist/${this.id}`);
-            const tracks = await axios(`https://cors-anywhere.herokuapp.com/${result.tracklist}`)
-            this.title = result.name;
-            this.albumNumbers = result.nb_album;
-            this.picture = result.picture_xl;
-            this.tracklist = tracks.data;
+            const result = await axios(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/${this.id}`);
+
+            const tracks = await axios(`https://cors-anywhere.herokuapp.com/${result.data.tracklist}`)
+            this.title = result.data.name;
+            this.albumNumbers = result.data.nb_album;
+            this.picture = result.data.picture_xl;
+            this.tracklist = tracks.data.data;
+    console.log('tracks', result)
+
             
         }catch(error){
             alert(error)

@@ -1,7 +1,7 @@
 import {elements, limitString, musicPlayList} from './base';
 export const getInput = () => elements.searchInput.value;
 export const clearInput = () => elements.searchInput.value = '';
-export const clearResults = () => [elements.searchContent,elements.songList].forEach(el => el.innerHTML = '');
+export const clearResults = () => [elements.searchContent,elements.songList, elements.musicContainer].forEach(el => el.innerHTML = '');
 export const clearTitle = () => elements.artistTitle.innerHTML = '';
 
 
