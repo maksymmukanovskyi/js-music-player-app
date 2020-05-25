@@ -8,11 +8,6 @@ import * as musicView from './views/musicView';
 
 import {elements, renderLoader, clearLoader, elementString} from './views/base';
 
-let albumMethods = 'https://api.deezer.com/album/103248';
-let topArtist = 'https://api.deezer.com/search/track?q=new hits';
-let songMethod = 'https://api.deezer.com/track/3135556';
-let artistMethod = 'https://api.deezer.com/artist/27';
-
 
 const state = {};
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////

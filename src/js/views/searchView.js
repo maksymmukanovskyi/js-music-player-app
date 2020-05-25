@@ -111,10 +111,33 @@ const renderButtons = (page, music) => {
     elements.searchContent.insertAdjacentHTML('afterbegin' , button);
 }
 
+const getUniqueArtist = (arr, comp) => {
+//colected all names
+const unique =  arr.map(e => e.artist[comp])
+//check if names arerepeated by index
+         .map((e, i, final) => final.indexOf(e) === i && i)
+//filter existing array by truethfull indexes (scipped objects with false parameters)
+         .filter((e) => arr[e])
+// render objects  with given indexes         
+         .map(e => arr[e]);
+            return unique;
+}
+
 
 export const renderResults = (music, page = 1, type = 'artist') => {
+    let uniqueArtist = getUniqueArtist(music.data, 'name')
+
+    if(type == 'artist'){
+        uniqueArtist.forEach(el => renderMusicCard(el, type));
+    }else{
         music.data.forEach(el => renderMusicCard(el, type));
+    }
+        
+
+
         renderTitle(music);
         renderButtons(page, music);
         renderScroll(music);
 }
+
+
