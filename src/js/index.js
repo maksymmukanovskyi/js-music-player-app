@@ -49,7 +49,7 @@ const controlSearch = async () => {
 const buttonsSearch = async (e) => {
     if(state){
         searchView.clearResults();
-        renderLoader(elements.mainContainer)
+        renderLoader(elements.mainContainer);
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
         
@@ -90,7 +90,8 @@ elements.searchForm.addEventListener('submit', e => {
 
 
 elements.searchContent.addEventListener('click', e => {
-    if(!e.target.matches('.btn-inline')) return;
+    if(!e.target.closest('.btn-inline')) return;
+    console.log(e.target.closest('.btn-inline'))
     buttonsSearch(e);
 })
 
