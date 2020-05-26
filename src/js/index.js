@@ -2,18 +2,15 @@
 import '../styles/styles.css'
 import Search from './models/Search';
 import Music from './models/Music';
-
 import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
-
-import {elements, renderLoader, clearLoader, elementString} from './views/base';
+import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
 
 
 const state = {};
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
 const controlSearch = async () => {
     const query = searchView.getInput();
-
 
     if(query){
         state.search = new Search(query);
@@ -32,6 +29,7 @@ const controlSearch = async () => {
         }
     }else{
         state.search = new Search(query);
+        state.search.activeTab = "artist";
         searchView.clearInput();
         searchView.clearResults();
         searchView.clearTitle();
@@ -54,7 +52,7 @@ const buttonsSearch = async (e) => {
         // renderLoader(elements.mainContainer)
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
-        // const goToPage = parseInt(btn.dataset.goto, 10);
+        const goToPage = parseInt(btn.dataset.goto, 10);
         if(btn){
             let type = btn.className.split('--')[1]
         try{
@@ -81,9 +79,9 @@ const headerFiltering = (e) => {
 }
 
 
-
-
 elements.searchForm.addEventListener('submit', e => {
+    let tab = clearTabs();
+    tab[0].classList.add('active');
     e.preventDefault();
     controlSearch();
 })
@@ -95,12 +93,22 @@ elements.searchContent.addEventListener('click', e => {
 
 elements.listType.addEventListener('click', e => {
     if(e.target.nodeName !== 'LI') return;
-    let tabs = document.querySelectorAll('.chart-list__item');
-    tabs.forEach(el => el.classList.remove('active'))
+    clearTabs();
     e.target.classList.add('active');
     headerFiltering(e);
 })
 window.addEventListener('load', controlSearch)
+elements.logoSign.addEventListener('click', () => {
+    let tab = clearTabs();
+    tab[0].classList.add('active');
+    controlSearch()
+});
+elements.homeBtn.addEventListener('click', () => {
+    let tab = clearTabs();
+    tab[0].classList.add('active');
+    controlSearch()
+});
+
 
 ////////////////////////MUSIC CONTROLLER/////////////////////////////
 
@@ -108,50 +116,36 @@ const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
     if(id){
     if(state.search.activeTab == 'artist'){
-console.log('artist render');
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
-
         state.music = new Music(id);
         try{
         await state.music.getArtist()
         musicView.renderArtist(state.music)
+        window.history.replaceState(null, null, ' ');
         clearLoader();
-
-        
         }catch(error){
             clearLoader();
             alert('Error processin music!')
         }
     }else if(state.search.activeTab == 'albums'){
-console.log('album render');
-
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
-
         state.music = new Music(id);
-
         try{
         await state.music.getAlbum();
-        musicView.renderAlbum(state.music)
+        musicView.renderAlbum(state.music);
+        window.history.replaceState(null, null, ' ');
         clearLoader();
-
-        
         }catch(error){
             clearLoader();
             alert('Error processin music!')
         }
     }
-    
-       
     }
 }
-
-// elements.musicMainBox.addEventListener('click', e => {
-//     controlMusic(e)
-// });
 
 window.addEventListener('hashchange', e => {
     controlMusic(e)

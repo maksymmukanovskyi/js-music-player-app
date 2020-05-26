@@ -1,4 +1,6 @@
 export const elements = {
+    logoSign: document.querySelector('.logo'),
+    homeBtn: document.querySelector('.menu__home'),
     searchInput: document.querySelector('.search__input'),
     searchForm: document.querySelector('.search__form'),
     searchContent: document.querySelector('.content'),
@@ -17,6 +19,11 @@ export const timeConvert = num =>{
   let sec = num % 60;
   let s = sec > 9? sec : '0'+ sec;  
   return m + ":" + s;         
+}
+export const clearTabs = () => {
+  let tabs = document.querySelectorAll('.chart-list__item');
+  tabs.forEach(el => el.classList.remove('active'))
+  return tabs;
 }
 
 export const limitString = (string , limit = 15) => {
