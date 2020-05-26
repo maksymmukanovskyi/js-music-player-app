@@ -49,15 +49,17 @@ const controlSearch = async () => {
 const buttonsSearch = async (e) => {
     if(state){
         searchView.clearResults();
-        // renderLoader(elements.mainContainer)
+        renderLoader(elements.mainContainer)
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
-        const goToPage = parseInt(btn.dataset.goto, 10);
+        
+
         if(btn){
+            state.goToPage = parseInt(btn.dataset.goto, 10);
             let type = btn.className.split('--')[1]
         try{
             await state.search.getBtnResult(type);
-            searchView.renderResults(state.search.musicSearch.data, goToPage, state.search.activeTab);
+            searchView.renderResults(state.search.musicSearch.data, state.goToPage, state.search.activeTab);
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -67,14 +69,14 @@ const buttonsSearch = async (e) => {
     }
 }
 
-const headerFiltering = (e) => {
+const headerFiltering = async (e) => {
     if(state){
         searchView.clearResults();
         searchView.clearTitle();
         window.pageYOffset;
         const btnType = e.target.textContent.toLowerCase();
         state.search.activeTab = btnType;
-        searchView.renderResults(state.search.musicSearch.data, null, btnType);
+        searchView.renderResults(state.search.musicSearch.data, state.goToPage, btnType);
     }
 }
 
@@ -88,6 +90,7 @@ elements.searchForm.addEventListener('submit', e => {
 
 
 elements.searchContent.addEventListener('click', e => {
+    if(!e.target.matches('.btn-inline')) return;
     buttonsSearch(e);
 })
 

@@ -6,9 +6,6 @@ export const clearTitle = () => elements.artistTitle.innerHTML = '';
 
 
 const renderMusicCard = (music, type) => {
-    
-
-
     let markup;
     if(type == 'artist'){
         markup = `
