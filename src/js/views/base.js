@@ -12,9 +12,11 @@ export const elements = {
 }
 
 export const timeConvert = num =>{ 
-  var min = Math.floor(num / 60);  
-  var sec = num % 60;
-  return min + ":" + sec;         
+  let min = Math.floor(num / 60);
+  let m = min > 9? min : '0'+ min;  
+  let sec = num % 60;
+  let s = sec > 9? sec : '0'+ sec;  
+  return m + ":" + s;         
 }
 
 export const limitString = (string , limit = 15) => {

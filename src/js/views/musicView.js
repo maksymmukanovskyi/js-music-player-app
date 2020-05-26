@@ -1,7 +1,6 @@
 import {elements, musicPlayList} from './base';
 
 export const renderArtist = (music) => {
-    console.log(music)
 
     const markup = `
     <figure class="music__fig">

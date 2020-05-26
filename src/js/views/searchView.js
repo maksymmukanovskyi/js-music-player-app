@@ -16,7 +16,7 @@ const renderMusicCard = (music, type) => {
             <a  href="#${music.artist.id}">
                 
                 <figure>
-                        <img src="${music.album.cover_medium}" alt="artist" class="artist-card__img">
+                        <img src="${music.artist.picture_medium}" alt="artist" class="artist-card__img">
                         <button class="music__love">
                         <svg class="header__likes">
                             <use href="./sprite.svg#icon-heart-outlined"></use>

@@ -25,8 +25,6 @@ const controlSearch = async () => {
         try{
             await state.search.getResults();
             searchView.renderResults(state.search.musicSearch.data)
-            console.log(state.search.musicSearch.data.next)
-
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -42,8 +40,6 @@ const controlSearch = async () => {
         try{
             await state.search.getDefaultLoad();
             searchView.renderResults(state.search.musicSearch.data)
-            console.log(state.search.musicSearch.data.next)
-
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -65,7 +61,6 @@ const buttonsSearch = async (e) => {
             await state.search.getBtnResult(type);
             searchView.renderResults(state.search.musicSearch.data, goToPage, state.search.activeTab);
             clearLoader();
-            console.log(state.search)
         }catch(error){
             alert('Something wrong with search....')
             clearLoader();
@@ -82,7 +77,6 @@ const headerFiltering = (e) => {
         const btnType = e.target.textContent.toLowerCase();
         state.search.activeTab = btnType;
         searchView.renderResults(state.search.musicSearch.data, null, btnType);
-        
     }
 }
 
@@ -113,9 +107,8 @@ window.addEventListener('load', controlSearch)
 const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
     if(id){
-
-    if(e.target.closest('.artist-card')){
-
+    if(state.search.activeTab == 'artist'){
+console.log('artist render');
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -131,7 +124,9 @@ const controlMusic = async (e) => {
             clearLoader();
             alert('Error processin music!')
         }
-    }else if(e.target.closest('.album-card')){
+    }else if(state.search.activeTab == 'albums'){
+console.log('album render');
+
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -154,6 +149,11 @@ const controlMusic = async (e) => {
     }
 }
 
-elements.musicMainBox.addEventListener('click', e => {
+// elements.musicMainBox.addEventListener('click', e => {
+//     controlMusic(e)
+// });
+
+window.addEventListener('hashchange', e => {
     controlMusic(e)
 });
+
