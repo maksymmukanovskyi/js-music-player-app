@@ -73,3 +73,14 @@ span{
 .youtube__play{
     left: 0px;
 }
+
+.backward, .forward{
+color: var(--white);
+background-color: rgba(0, 0, 0, 0);
+border: none;
+width: 19%;
+padding-bottom: 4px;
+margin: 0;
+text-align: center;
+font-size: 33px;
+}

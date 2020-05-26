@@ -29,6 +29,7 @@
     border: none;
     color: #4c4c4c;
     margin-right: 0.5rem;
+    margin-left: 0.5rem;
     flex-basis: 65%;
 }
 
@@ -135,7 +136,7 @@
 }
 .search__form {
     flex-basis: 30%;
-    margin-left: 90px;
+    margin-left: 35px;
 }
 
 }
@@ -150,7 +151,7 @@
         left: 10%;
    }
    .search__form {
-    flex-basis: 50%;
+    flex-basis: 60%;
    display: flex;
    align-items: center;
    justify-content: left;

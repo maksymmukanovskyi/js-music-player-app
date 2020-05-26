@@ -22,15 +22,9 @@ const renderMusicCard = (music, type) => {
                             <use href="./sprite.svg#icon-heart-outlined"></use>
                         </svg>
                         </button>
-                        <button class="youtube__play">
-                            <p>YOUTUBE PLAY</p>
-                        </button>
-                        <button class="preview__play">
-                            <p>PREVIEW PLAY</p>
-                        </button>
                     <figcaption>
-                        <p class="artist-card__number-albums">${music.artist.name}</p>
-                        <p class="artist-card__name">${limitString(music.title)}</p>
+                        <p  class="artist-card__name">${limitString(music.artist.name)}</p>
+                        <p class="artist-card__number-albums" >${limitString(music.title)}</p>
                     </figcaption>
                 </figure>
             </a>
@@ -61,8 +55,66 @@ const renderMusicCard = (music, type) => {
     
 } 
 
-const renderTitle = (music) => {
-    const markup =` <h1>${music.data[0].artist.name}</h1>`
+const renderFavourite = (music, type) => {
+    let markup;
+    if(type == 'artist'){
+        markup =`<div>
+        <h2>${music.data[0].artist.name}</h2>
+        <ul>
+        ${music.map(el => 
+            `<li class="album-card">
+            <a  href="#${el.artist.id}">
+                <figure>
+                    <img src="${el.artist.cover_medium}" alt="albums-picture" class="artist-card__img">
+                    <figcaption>
+                        <p class="artist-card__name">${limitString(el.artist.title)}</p>
+                    </figcaption>
+                </figure>
+                </a>
+                </li>`  
+            )}
+        </ul>
+    </div>`;
+    }else if(type == 'albums'){
+    markup =`<div>
+    <h2>${music.data[0].album.name}</h2>
+        <ul>
+        ${music.map(el => 
+            `<li class="album-card">
+            <a  href="#${el.album.id}">
+                <figure>
+                    <img src="${el.album.cover_medium}" alt="albums-picture" class="artist-card__img">
+                    <figcaption>
+                        <p class="artist-card__name">${limitString(el.album.title)}</p>
+                    </figcaption>
+                </figure>
+                </a>
+                </li>`  
+            )}
+        </ul>
+    </div>`;
+    }else if(type == 'songs'){
+        markup =`<div>
+        <h2>${music.data[0].album.name}</h2>
+            <ul>
+            ${music.map(el => 
+        `<li class="album-card">
+            <a  href="#${el.album.id}">
+            <figure>
+                <img src="${el.album.cover_medium}" alt="albums-picture" class="artist-card__img">
+                <figcaption>
+                    <p class="artist-card__name">${limitString(el.album.title)}</p>
+                 </figcaption>
+            </figure>
+            </a>
+            </li>`  
+        )}
+            </ul>
+        </div>`;        
+    }
+
+   
+    
     elements.artistTitle.insertAdjacentHTML('afterbegin', markup);
 }
 
@@ -135,7 +187,7 @@ export const renderResults = (music, page = 1, type = 'artist') => {
         
 
 
-        renderTitle(music);
+        // renderFavourite(music);
         renderButtons(page, music);
         renderScroll(music);
 }
