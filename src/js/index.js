@@ -21,7 +21,7 @@ const controlSearch = async () => {
 
         try{
             await state.search.getResults();
-            searchView.renderResults(state.search.musicSearch.data)
+            searchView.renderResults(state.search.artistSearch.data)
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -37,7 +37,9 @@ const controlSearch = async () => {
 
         try{
             await state.search.getDefaultLoad();
-            searchView.renderResults(state.search.musicSearch.data)
+            searchView.renderResults(
+                state.search.artistSearch.data
+                )
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -76,7 +78,18 @@ const headerFiltering = async (e) => {
         window.pageYOffset;
         const btnType = e.target.textContent.toLowerCase();
         state.search.activeTab = btnType;
+
+        if(btnType == 'artist'){
+        searchView.renderResults(state.search.artistSearch.data, state.goToPage, btnType);
+        console.log(state.search.artistSearch.data)
+
+    }else if(btnType == 'albums'){
+        searchView.renderResults(state.search.albumSearch.data, state.goToPage, btnType);
+        console.log(state.search.albumSearch.data)
+    }else if(btnType == 'songs'){
         searchView.renderResults(state.search.musicSearch.data, state.goToPage, btnType);
+    }
+        
     }
 }
 
@@ -101,7 +114,9 @@ elements.listType.addEventListener('click', e => {
     e.target.classList.add('active');
     headerFiltering(e);
 })
+
 window.addEventListener('load', controlSearch)
+
 elements.logoSign.addEventListener('click', () => {
     let tab = clearTabs();
     tab[0].classList.add('active');
