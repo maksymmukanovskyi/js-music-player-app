@@ -139,7 +139,11 @@ const renderScroll = music => {
 
 
 const createButtons = (page, type) => `
-    <div class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? page -1 : page +1}" type="button">
+    <div class="btn-inline results__btn--${type}"
+     data-goto_artist="${type === 'prev' ? page -1 : page +1}" 
+     data-goto_album="${type === 'prev' ? page -1 : page +1}" 
+     data-goto_song="${type === 'prev' ? page -1 : page +1}" 
+     type="button">
         <span>Page ${type === 'prev' ? page -1 : page +1}</span>
     </div>`;
 

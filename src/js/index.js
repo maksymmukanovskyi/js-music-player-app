@@ -54,14 +54,36 @@ const buttonsSearch = async (e) => {
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
+        console.log(state.search.activeTab)
         
 
         if(btn){
-            state.goToPage = parseInt(btn.dataset.goto, 10);
-            let type = btn.className.split('--')[1]
+            state.pages = {
+                goToAristPage: parseInt(btn.dataset.goto_artist, 10),
+                goToAlbumPage: parseInt(btn.dataset.goto_album, 10),
+                goToMusicPage: parseInt(btn.dataset.goto_song, 10),
+
+            }
+            let type = btn.className.split('--')[1];
+            let obj = state.search.activeTab;
+            console.log(state.pages.goToAristPage)
+            console.log(state.pages.goToAlbumPage)
+            console.log(state.pages.goToMusicPage)
+
         try{
-            await state.search.getBtnResult(type);
-            searchView.renderResults(state.search.musicSearch.data, state.goToPage, state.search.activeTab);
+            if(obj == 'artist'){
+                await state.search.getArtistBtnResult(type);
+                searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, state.search.activeTab);
+
+            }else if(obj == 'albums'){
+                await state.search.getAlbumBtnResult(type);
+                searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, state.search.activeTab);
+
+            }else if(obj == 'songs'){
+                await state.search.getMusicBtnResult(type);
+                searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, state.search.activeTab);
+
+            }
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -80,14 +102,13 @@ const headerFiltering = async (e) => {
         state.search.activeTab = btnType;
 
         if(btnType == 'artist'){
-        searchView.renderResults(state.search.artistSearch.data, state.goToPage, btnType);
+        searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, btnType);
         console.log(state.search.artistSearch.data)
-
     }else if(btnType == 'albums'){
-        searchView.renderResults(state.search.albumSearch.data, state.goToPage, btnType);
+        searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, btnType);
         console.log(state.search.albumSearch.data)
     }else if(btnType == 'songs'){
-        searchView.renderResults(state.search.musicSearch.data, state.goToPage, btnType);
+        searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, btnType);
     }
         
     }
