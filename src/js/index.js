@@ -62,13 +62,9 @@ const buttonsSearch = async (e) => {
                 goToAristPage: parseInt(btn.dataset.goto_artist, 10),
                 goToAlbumPage: parseInt(btn.dataset.goto_album, 10),
                 goToMusicPage: parseInt(btn.dataset.goto_song, 10),
-
             }
             let type = btn.className.split('--')[1];
             let obj = state.search.activeTab;
-            console.log(state.pages.goToAristPage)
-            console.log(state.pages.goToAlbumPage)
-            console.log(state.pages.goToMusicPage)
 
         try{
             if(obj == 'artist'){
@@ -103,10 +99,9 @@ const headerFiltering = async (e) => {
 
         if(btnType == 'artist'){
         searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, btnType);
-        console.log(state.search.artistSearch.data)
     }else if(btnType == 'albums'){
+        state.pages.goToAlbumPage = 1
         searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, btnType);
-        console.log(state.search.albumSearch.data)
     }else if(btnType == 'songs'){
         searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, btnType);
     }
