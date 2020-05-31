@@ -1,4 +1,5 @@
 import {elements, limitString, musicPlayList} from './base';
+import {state} from '../index';
 export const getInput = () => elements.searchInput.value;
 export const clearInput = () => elements.searchInput.value = '';
 export const clearResults = () => [elements.searchContent,elements.songList, elements.musicContainer].forEach(el => el.innerHTML = '');
@@ -138,29 +139,36 @@ const renderScroll = music => {
         }
 
 
-const createButtons = (page, type, tab) => {
-    let data;
+const createButtons = (page, type, tab) =>{ 
+    console.log(state.pages.goToAristPage)
+
     if(tab == 'artist'){
-        data = 'goto_artist'
+        type === 'prev' ? page -=1 : page +=1;
+        state.pages.goToAristPage = page;
+
     }else if(tab == 'albums'){
-        data = 'goto_album'
+        type === 'prev' ? page -=1 : page +=1;
+        state.pages.goToAlbumPage = page;
     }else if(tab == 'songs'){
-        data = 'goto_song'
+        type === 'prev' ? page -=1 : page +=1;
+        state.pages.goToMusicPage = page;
     }
-        return `
-        <div class="btn-inline results__btn--${type}"
-         data-${data}="${type === 'prev' ? page -1 : page +1}"
+
+    return `<div class="btn-inline results__btn--${type}"
+         data-goto_artist="${state.pages.goToAristPage}"
          type="button">
-            <span>Page ${type === 'prev' ? page -1 : page +1}</span>
+         <span>Page ${type === 'prev' ? state.pages.goToAristPage -1 : state.pages.goToAristPage +1}</span>
         </div>`
-    }
+};
+
+
 
     
 const renderButtons = (page, music, type) => {
 
     let button;
     if(music.next && !music.prev){
-        button = createButtons(page,'next', type);
+        button = createButtons(page, 'next', type);
         
     }else if(music.next  && music.prev ){
         button = `
@@ -168,7 +176,7 @@ const renderButtons = (page, music, type) => {
         ${button = createButtons(page, 'next', type)}
         `
     }else if(!music.next && music.prev){
-        button = createButtons(page, 'prev', type)
+        button = createButtons(page, 'prev', type);
     }
     elements.searchContent.insertAdjacentHTML('afterbegin' , button);
 }

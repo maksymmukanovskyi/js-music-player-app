@@ -7,10 +7,19 @@ import * as musicView from './views/musicView';
 import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
 
 
-const state = {};
+export const state = {};
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
+
+
+
+
 const controlSearch = async () => {
     const query = searchView.getInput();
+    state.pages = {
+        goToAristPage: 0,
+        goToAlbumPage: 0,
+        goToMusicPage: 0,
+    }
 
     if(query){
         state.search = new Search(query);
@@ -58,11 +67,10 @@ const buttonsSearch = async (e) => {
         
 
         if(btn){
-            state.pages = {
-                goToAristPage: parseInt(btn.dataset.goto_artist, 10),
-                goToAlbumPage: parseInt(btn.dataset.goto_album, 10),
-                goToMusicPage: parseInt(btn.dataset.goto_song, 10),
-            }
+            
+            // parseInt(btn.dataset.goto_song, 10)
+            console.log(state.pages)
+            
             let type = btn.className.split('--')[1];
             let obj = state.search.activeTab;
 
