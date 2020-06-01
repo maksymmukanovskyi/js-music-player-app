@@ -13,6 +13,7 @@ export const elements = {
     musicContainer:document.querySelector('.music__view')
 }
 
+
 export const timeConvert = num =>{ 
   let min = Math.floor(num / 60);
   let m = min > 9? min : '0'+ min;  

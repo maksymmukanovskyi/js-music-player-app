@@ -137,46 +137,42 @@ const renderScroll = music => {
                 pageBtns.forEach(el =>  el.style.display = 'flex')
             }
         }
+       
+export const stateButtonCounter = (tab, type) => {
+            console.log('type', type)
+            if(tab == 'artist'){
+                type == 'prev' ? state.pages.goToAristPage -=1 : state.pages.goToAristPage +=1;
+            }else if(tab == 'albums'){
+                type == 'prev' ? state.pages.goToAlbumPage -=1 : state.pages.goToAlbumPage +=1;
+            }else if(tab == 'songs'){
+                type == 'prev' ? state.pages.goToMusicPage -=1 : state.pages.goToMusicPage +=1;
+            }
+        };
 
 
-const createButtons = (page, type, tab) =>{ 
-    console.log(state.pages.goToAristPage)
 
-    if(tab == 'artist'){
-        type === 'prev' ? page -=1 : page +=1;
-        state.pages.goToAristPage = page;
 
-    }else if(tab == 'albums'){
-        type === 'prev' ? page -=1 : page +=1;
-        state.pages.goToAlbumPage = page;
-    }else if(tab == 'songs'){
-        type === 'prev' ? page -=1 : page +=1;
-        state.pages.goToMusicPage = page;
-    }
-
-    return `<div class="btn-inline results__btn--${type}"
-         data-goto_artist="${state.pages.goToAristPage}"
+const createButtons = (page, type) => `<div class="btn-inline results__btn--${type}"
+         data-goto_artist="${page}"
          type="button">
-         <span>Page ${type === 'prev' ? state.pages.goToAristPage -1 : state.pages.goToAristPage +1}</span>
-        </div>`
-};
+         <span>Page ${type === 'prev' ? page -1 : page +1}</span>
+        </div>`;
 
 
 
-    
-const renderButtons = (page, music, type) => {
 
+
+const renderButtons = (music, page) => {
     let button;
     if(music.next && !music.prev){
-        button = createButtons(page, 'next', type);
-        
+        button = createButtons(page, 'next');
     }else if(music.next  && music.prev ){
         button = `
-        ${button = createButtons(page, 'prev', type)}
-        ${button = createButtons(page, 'next', type)}
+        ${button = createButtons(page, 'prev')}
+        ${button = createButtons(page, 'next')}
         `
     }else if(!music.next && music.prev){
-        button = createButtons(page, 'prev', type);
+        button = createButtons(page, 'prev');
     }
     elements.searchContent.insertAdjacentHTML('afterbegin' , button);
 }
@@ -206,7 +202,7 @@ export const renderResults = (music, page = 1, type = 'artist') => {
 
 
         // renderFavourite(music);
-        renderButtons(page, music, type);
+        renderButtons(music, page);
         renderScroll(music);
 }
 

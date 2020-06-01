@@ -6,21 +6,21 @@ import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
 import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
 
+ export const state = {};
+ 
 
-export const state = {};
+
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
-
 
 
 
 const controlSearch = async () => {
     const query = searchView.getInput();
     state.pages = {
-        goToAristPage: 0,
-        goToAlbumPage: 0,
-        goToMusicPage: 0,
+        goToAristPage: 1,
+        goToAlbumPage: 1,
+        goToMusicPage: 1,
     }
-
     if(query){
         state.search = new Search(query);
         searchView.clearInput();
@@ -55,7 +55,9 @@ const controlSearch = async () => {
             clearLoader();
         }
     }
-}
+};
+
+
 
 const buttonsSearch = async (e) => {
     if(state){
@@ -63,30 +65,27 @@ const buttonsSearch = async (e) => {
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         const btn = e.target.closest('.btn-inline');
-        console.log(state.search.activeTab)
         
 
         if(btn){
-            
-            // parseInt(btn.dataset.goto_song, 10)
-            console.log(state.pages)
-            
             let type = btn.className.split('--')[1];
             let obj = state.search.activeTab;
 
         try{
             if(obj == 'artist'){
                 await state.search.getArtistBtnResult(type);
+                searchView.stateButtonCounter('artist', type);
                 searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, state.search.activeTab);
 
             }else if(obj == 'albums'){
                 await state.search.getAlbumBtnResult(type);
+                searchView.stateButtonCounter('albums', type);
                 searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, state.search.activeTab);
 
             }else if(obj == 'songs'){
                 await state.search.getMusicBtnResult(type);
+                searchView.stateButtonCounter('songs', type);
                 searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, state.search.activeTab);
-
             }
             clearLoader();
         }catch(error){
@@ -108,7 +107,6 @@ const headerFiltering = async (e) => {
         if(btnType == 'artist'){
         searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, btnType);
     }else if(btnType == 'albums'){
-        state.pages.goToAlbumPage = 1
         searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, btnType);
     }else if(btnType == 'songs'){
         searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, btnType);
@@ -128,7 +126,6 @@ elements.searchForm.addEventListener('submit', e => {
 
 elements.searchContent.addEventListener('click', e => {
     if(!e.target.closest('.btn-inline')) return;
-    console.log(e.target.closest('.btn-inline'))
     buttonsSearch(e);
 })
 
