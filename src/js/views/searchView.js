@@ -139,7 +139,6 @@ const renderScroll = music => {
         }
        
 export const stateButtonCounter = (tab, type) => {
-            console.log('type', type)
             if(tab == 'artist'){
                 type == 'prev' ? state.pages.goToAristPage -=1 : state.pages.goToAristPage +=1;
             }else if(tab == 'albums'){

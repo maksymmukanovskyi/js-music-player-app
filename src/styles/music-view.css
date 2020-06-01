@@ -16,22 +16,19 @@
         object-fit: cover;
          }
     .music__title {
-      position: absolute;
+      position: relative;
+      display: block;
       bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 20%) skewY(-6deg);
+      top: -75%;
+      left: 30%;
       color: #fff;
-      font-weight: 700;
-      font-size: 2.75rem;
+      /* font-weight: 700; */
+      font-size: 3.5rem;
       text-transform: uppercase;
       width: 70%;
-      line-height: 1.95;
+      /* line-height: 1.95; */
       text-align: center; }
-      .music__title span {
-        -webkit-box-decoration-break: clone;
-        box-decoration-break: clone;
-        padding: 1.3rem 2rem;
-        background-image: linear-gradient(to right bottom, #FBDB89, #F48982); }
+      
     .music__details {
       display: flex;
       align-items: center;

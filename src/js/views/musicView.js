@@ -5,9 +5,7 @@ export const renderArtist = (music) => {
     const markup = `
     <figure class="music__fig">
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
-                <h1 class="music__title">
-                    <span>${music.title}</span>
-                </h1>
+                <h1 class="music__title">${music.title}</h1>
     </figure>
             <div class="music__details">
                 
@@ -34,9 +32,7 @@ export const renderAlbum = (music) => {
     const markup = `
     <figure class="music__fig">
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
-                <h1 class="music__title">
-                    <span>${music.title}</span>
-                </h1>
+                <h1 class="music__title">${music.title}</h1>
     </figure>
             <div class="music__details">
                 
