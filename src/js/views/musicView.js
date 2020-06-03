@@ -4,6 +4,7 @@ export const renderArtist = (music) => {
 
     const markup = `
     <figure class="music__fig">
+                 <button class="back__music"> BACK </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
                 <h1 class="music__title">${music.title}</h1>
     </figure>
@@ -31,6 +32,7 @@ export const renderAlbum = (music) => {
 
     const markup = `
     <figure class="music__fig">
+                <button class="back__music"> BACK </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
                 <h1 class="music__title">${music.title}</h1>
     </figure>
@@ -50,4 +52,8 @@ export const renderAlbum = (music) => {
             </div>
     `;
     elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
+}
+
+export const handleBackBtn = () => {
+    
 }

@@ -190,4 +190,22 @@ const controlMusic = async (e) => {
 window.addEventListener('hashchange', e => {
     controlMusic(e)
 });
+elements.musicContainer.addEventListener('click', (e) => {
+    if(e.target.className !== 'back__music') return;
+    if(state){
+        searchView.clearResults();
+        searchView.clearTitle();
+        window.pageYOffset;
+        let type = state.search.activeTab;
+
+        if(type == 'artist'){
+        searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, type);
+    }else if(type == 'albums'){
+        searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, type);
+    }else if(type == 'songs'){
+        searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, type);
+    }
+        
+    }
+})
 
