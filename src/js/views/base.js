@@ -49,7 +49,9 @@ export const musicPlayList = music => `
 <li class="songs-item">
     <a class="songs-link" href="#${music.artist.id}">
     <figure class="songs-item__figure">
-         <button class="play">&#x23ef;</button>
+         <button class="play">PREVIEW</button>
+         <button class="play">YOUTUBE</button>
+
         <figcaption class="songs-item__discription" >
              <div class="discription__left-part">
                  <p class="songs-item__music-name">${limitString(music.title)}</p>
@@ -59,8 +61,7 @@ export const musicPlayList = music => `
         </figcaption>
     </figure>
 </a>
-</li>
-`;
+</li>`;
 
 export const renderLoader = parent => {
     const loader = `

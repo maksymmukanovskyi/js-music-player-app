@@ -1,3 +1,11 @@
+.playlist{
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+
 .songs-header__list {
     height: 65px;
     width: 100%;
@@ -21,6 +29,7 @@
 .songs-item {
     height: 70px;
     width: 100%;
+    list-style: none;
 }
 .songs-item__figure {
     display: flex;
