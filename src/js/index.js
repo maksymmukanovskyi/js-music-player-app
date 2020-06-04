@@ -2,6 +2,7 @@
 import '../styles/styles.css'
 import Search from './models/Search';
 import Music from './models/Music';
+import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
 import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
@@ -156,12 +157,15 @@ const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
     if(id){
     if(state.search.activeTab == 'artist'){
+
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         state.music = new Music(id);
         try{
         await state.music.getArtist()
+console.log('music state', state.music)
+
         musicView.renderArtist(state.music)
         window.history.replaceState(null, null, ' ');
         clearLoader();
@@ -197,7 +201,6 @@ elements.musicContainer.addEventListener('click', (e) => {
         searchView.clearTitle();
         window.pageYOffset;
         let type = state.search.activeTab;
-
         if(type == 'artist'){
         searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, type);
     }else if(type == 'albums'){
@@ -207,5 +210,25 @@ elements.musicContainer.addEventListener('click', (e) => {
     }
         
     }
+})
+
+
+///////////////////////////////// LIKES CONROLLER ////////////////////////////
+const controlLikes = () => {
+    if(!state.likes) state.likes = new Likes();
+    const currentId = state.music.id;
+    if(!state.likes.isLiked(currentId)){
+        const newLike = state.likes.addLike(
+            currentId,
+            state.music.title,
+            state.music.picture,
+        );
+    }
+}
+
+elements.musicContainer.addEventListener('click', (e) => {
+    if(e.target.matches('.music__love__music, .music__love__music *'))
+        controlLikes()
+        console.log(state)
 })
 

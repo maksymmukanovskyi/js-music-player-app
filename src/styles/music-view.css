@@ -89,3 +89,26 @@
              .album__info-data{
                margin: 15px;
              }
+
+             .music__love__music{
+              right: 29px;
+              width: fit-content;
+              top: -17px;
+              position: absolute;
+              border: none;
+              cursor: pointer;
+              margin-left: auto;
+              transition: all .2s;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: rgba(0, 0, 0, 0);
+          }
+          
+          .music__love__music svg {
+              height: 3rem;
+              width: 3rem;
+              fill: rgb(255, 255, 255);
+              filter: drop-shadow(0px 1px 1px #000000e7);
+          }
+          

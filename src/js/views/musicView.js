@@ -1,10 +1,14 @@
 import {elements, musicPlayList, limitString} from './base';
 
 export const renderArtist = (music) => {
-console.log(music.tracklist.map(el => musicPlayList(el)).join("'"))
     const markup = `
     <figure class="fig">
                  <button class="back__music"> BACK </button>
+                 <button class="music__love__music">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
                 <h1 class="music__title">${limitString(music.title, 31)}</h1>
                 <p class="info-data">Album numbers: ${music.albumNumbers}</p>
@@ -25,6 +29,11 @@ export const renderAlbum = (music) => {
     const markup = `
     <figure class="fig">
                 <button class="back__music"> BACK </button>
+                <button class="music__love__music">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
                 <h1 class="album__title">${limitString(music.title, 31)}</h1>
                 <div class="info">

@@ -34,6 +34,11 @@ const renderMusicCard = (music, type) => {
         <a  href="#${music.album.id}">
                             <figure>
                                 <img src="${music.album.cover_medium}" alt="albums-picture" class="artist-card__img">
+                        <button class="music__love">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                        </button>
                                 <figcaption>
                                     <p class="artist-card__name">${limitString(music.album.title)}</p>
                                 </figcaption>
