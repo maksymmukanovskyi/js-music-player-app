@@ -180,6 +180,8 @@ console.log('music state', state.music)
         state.music = new Music(id);
         try{
         await state.music.getAlbum();
+console.log('album state', state.music)
+
         musicView.renderAlbum(state.music);
         window.history.replaceState(null, null, ' ');
         clearLoader();
@@ -216,13 +218,25 @@ elements.musicContainer.addEventListener('click', (e) => {
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = () => {
     if(!state.likes) state.likes = new Likes();
-    const currentId = state.music.id;
-    if(!state.likes.isLiked(currentId)){
-        const newLike = state.likes.addLike(
-            currentId,
-            state.music.title,
-            state.music.picture,
-        );
+    const currentArtisrId = state.music.id;
+    const currentAlbumId = state.music.id;
+    const currentMusicId = state.music.id;
+
+
+    if(state.search.activeTab == 'artist'){
+        if(!state.likes.isLiked(currentId)){
+            const newLike = state.likes.addLike(
+                currentId,
+                state.music.title,
+                state.music.picture,
+            );
+    }else if(state.search.activeTab == 'albums'){
+
+    }else if(state.search.activeTab == 'songs'){
+
+    }
+
+    
     }
 }
 

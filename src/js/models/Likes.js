@@ -1,6 +1,9 @@
 export default class Likes{
 constructor(){
-    this.likes = [];
+    this.artistLikes = [];
+    this.albumtLikes = [];
+    this.songLikes = [];
+
 }
 
 addLike(id, title, picture){
