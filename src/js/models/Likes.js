@@ -6,11 +6,23 @@ constructor(){
 
 }
 
-addLike(id, title, picture){
+addArtistLike(id, title, picture){
      const like = {id, title, picture}
-     this.likes.push(like);
+     this.artistLikes.push(like);
      this.persistData();
      return like;
+};
+addAlbumLike(id, title, picture){
+    const like = {id, title, picture}
+    this.likes.push(like);
+    this.persistData();
+    return like;
+};
+addSongLike(id, title, picture){
+    const like = {id, title, picture}
+    this.likes.push(like);
+    this.persistData();
+    return like;
 };
 
 // removeLike(){
@@ -18,7 +30,7 @@ addLike(id, title, picture){
 // };
 
 isLiked(id){
-    return this.likes.findIndex(el => el.id === id) !== -1;
+    return this.artistLikes.findIndex(el => el.id === id) !== -1;
 }
 
 // getNumLikes(){
@@ -26,7 +38,7 @@ isLiked(id){
 // }
 
 persistData(){
-localStorage.setItem('likes', JSON.stringify(this.likes));
+localStorage.setItem('artistLikes', JSON.stringify(this.likes));
 }
 
 // readStorageData(){

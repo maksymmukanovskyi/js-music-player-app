@@ -220,12 +220,12 @@ const controlLikes = () => {
     if(!state.likes) state.likes = new Likes();
     const currentArtisrId = state.music.id;
     const currentAlbumId = state.music.id;
-    const currentMusicId = state.music.id;
+    const currentId = state.music.id;
 
 
     if(state.search.activeTab == 'artist'){
         if(!state.likes.isLiked(currentId)){
-            const newLike = state.likes.addLike(
+            const newLike = state.likes.addArtistLike(
                 currentId,
                 state.music.title,
                 state.music.picture,
