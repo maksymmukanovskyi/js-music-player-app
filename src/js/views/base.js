@@ -47,7 +47,7 @@ export const elementString = {
 
 export const musicPlayList = music => `
 <li class="songs-item">
-    <a class="songs-link" href="#${music.artist.id}">
+    <a class="songs-link" href="#${music.id}" data-link="${music.preview}" data-img="${music.album.cover_small}">
     <figure class="songs-item__figure">
          <button class="play">PREVIEW</button>
          <button class="play">YOUTUBE</button>
@@ -56,7 +56,13 @@ export const musicPlayList = music => `
              <div class="discription__left-part">
                  <p class="songs-item__music-name">${limitString(music.title)}</p>
                 <p class="songs-item__singer">${music.artist.name}</p>
+
             </div>
+             <button class="music__love__tracks">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                </button>
             <p class="songs-item__music-time">${timeConvert(music.duration)}</p>
         </figcaption>
     </figure>

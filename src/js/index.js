@@ -241,8 +241,9 @@ const controlLikes = () => {
 }
 
 elements.musicContainer.addEventListener('click', (e) => {
-    if(e.target.matches('.music__love__music, .music__love__music *'))
+    console.log(e.target)
+
+    if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
         controlLikes()
-        console.log(state)
 })
 
