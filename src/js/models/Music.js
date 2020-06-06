@@ -10,13 +10,11 @@ export default class Music{
 
 
             const tracks = await axios(`https://cors-anywhere.herokuapp.com/${result.data.tracklist}`)
-            console.log(tracks)
 
             this.title = result.data.name;
             this.albumNumbers = result.data.nb_album;
             this.picture = result.data.picture_xl;
             this.tracklist = tracks.data.data;
-            // this.songId = tracks.data.
             
         }catch(error){
             alert(error)
@@ -33,6 +31,23 @@ export default class Music{
             this.tracksNumber =  result.data.nb_tracks;
             this.tracklist = tracks.data.data;
 
+
+        }catch(error){
+            alert(error)
+        }
+    }
+
+    async getTrack(){
+        try{
+            const result = await axios(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/track/${this.id}`);
+            console.log(result)
+            this.artistName = result.data.artist.name;
+            this.title = result.data.title;
+            this.picture = result.data.album.cover_big;
+            this.time = result.data.duration;
+            this.originalLink = result.data.link;
+            this.preview = result.data.preview;
+            this.releaseDate = result.data.release_date;
 
         }catch(error){
             alert(error)

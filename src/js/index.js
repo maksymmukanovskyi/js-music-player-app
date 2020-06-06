@@ -189,7 +189,21 @@ console.log('album state', state.music)
             clearLoader();
             alert('Error processin music!')
         }
-    }
+    }else if(state.search.activeTab == 'songs'){
+        searchView.clearResults();
+        renderLoader(elements.mainContainer);
+        searchView.clearTitle();
+        state.music = new Music(id);
+        try{
+        await state.music.getTrack();
+console.log(state.music);
+        window.history.replaceState(null, null, ' ');
+        clearLoader();
+        }catch(error){
+            clearLoader();
+            alert('Error processin music!')
+            }
+        }
     }
 }
 
