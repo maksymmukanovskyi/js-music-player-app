@@ -157,31 +157,27 @@ const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
     if(id){
     if(state.search.activeTab == 'artist'){
-
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         state.music = new Music(id);
         try{
-        await state.music.getArtist()
-console.log('music state', state.music)
-
-        musicView.renderArtist(state.music)
+        await state.music.getArtist();
+        musicView.renderArtist(state.music);
         window.history.replaceState(null, null, ' ');
         clearLoader();
         }catch(error){
             clearLoader();
             alert('Error processin music!')
         }
-    }else if(state.search.activeTab == 'albums'){
+    }else if(state.search.activeTab == 'albums' && state.search.activeSelection !== 'songs'){
+        console.log('ddd', state.search.activeSelection)
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         state.music = new Music(id);
         try{
         await state.music.getAlbum();
-console.log('album state', state.music)
-
         musicView.renderAlbum(state.music);
         window.history.replaceState(null, null, ' ');
         clearLoader();
@@ -189,14 +185,14 @@ console.log('album state', state.music)
             clearLoader();
             alert('Error processin music!')
         }
-    }else if(state.search.activeTab == 'songs'){
+    }else if(state.search.activeTab == 'songs' || state.search.activeSelection == 'songs'){
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
         state.music = new Music(id);
         try{
         await state.music.getTrack();
-console.log(state.music);
+        musicView.renderTrack(state.music);
         window.history.replaceState(null, null, ' ');
         clearLoader();
         }catch(error){
@@ -206,7 +202,11 @@ console.log(state.music);
         }
     }
 }
-
+elements.musicContainer.addEventListener('click', e => {
+if(e.target.closest('.songs-item__discription') !== null && e.target.closest('.songs-item__discription').className == 'songs-item__discription'){
+    return state.search.activeSelection = 'songs';
+}
+})
 window.addEventListener('hashchange', e => {
     controlMusic(e)
 });
@@ -224,7 +224,6 @@ elements.musicContainer.addEventListener('click', (e) => {
     }else if(type == 'songs'){
         searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, type);
     }
-        
     }
 })
 
@@ -254,10 +253,10 @@ const controlLikes = () => {
     }
 }
 
-elements.musicContainer.addEventListener('click', (e) => {
-    console.log(e.target)
+// elements.musicContainer.addEventListener('click', (e) => {
+//     console.log(e.target)
 
-    if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
-        controlLikes()
-})
+//     if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
+//         controlLikes()
+// })
 

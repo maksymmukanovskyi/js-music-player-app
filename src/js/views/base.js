@@ -47,7 +47,7 @@ export const elementString = {
 
 export const musicPlayList = music => `
 <li class="songs-item">
-    <a class="songs-link" href="#${music.id}" data-link="${music.preview}" data-img="${music.album.cover_small}">
+    <a class="songs-link" href="#${music.id}" data-link="${music.preview}">
     <figure class="songs-item__figure">
          <button class="play">PREVIEW</button>
          <button class="play">YOUTUBE</button>

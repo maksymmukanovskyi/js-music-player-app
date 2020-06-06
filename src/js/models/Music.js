@@ -40,7 +40,6 @@ export default class Music{
     async getTrack(){
         try{
             const result = await axios(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/track/${this.id}`);
-            console.log(result)
             this.artistName = result.data.artist.name;
             this.title = result.data.title;
             this.picture = result.data.album.cover_big;

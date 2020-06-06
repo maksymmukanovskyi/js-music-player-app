@@ -25,7 +25,7 @@ export const renderArtist = (music) => {
 
 
 export const renderAlbum = (music) => {
-
+    console.log('arribve toalbums: ', music)
     const markup = `
     <figure class="fig">
                 <button class="back__music"> BACK </button>
@@ -48,3 +48,25 @@ export const renderAlbum = (music) => {
     elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
 }
 
+export const renderTrack = (music) => {
+    const markup = `
+    <figure class="fig">
+                <button class="back__music"> BACK </button>
+                <button class="music__love__music">
+                        <svg class="header__likes">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                </button>
+                <img src="${music.picture}" alt="${music.title}" class="music__img">
+                <h1 class="album__title">${limitString(music.title, 31)}</h1>
+                <h2 class="album__title">${limitString(music.artistName, 31)}</h2>
+
+                <div class="info">
+                    <p class="album__info-data">Preview: ${music.preview}</p>
+                    <p class="album__info-data">Time: ${music.time}</p>
+                    <p class="album__info-data">Release: ${music.releaseDate}</p>
+                    <p class="album__info-data">Original link: ${music.originalLink}</p>
+                </div>
+    </figure>`;
+    elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
+}
