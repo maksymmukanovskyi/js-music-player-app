@@ -156,7 +156,7 @@ elements.homeBtn.addEventListener('click', () => {
 const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
     if(id){
-    if(state.search.activeTab == 'artist'){
+    if(!state.search.activeSelection && state.search.activeTab == 'artist'){
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -170,8 +170,7 @@ const controlMusic = async (e) => {
             clearLoader();
             alert('Error processin music!')
         }
-    }else if(state.search.activeTab == 'albums' && state.search.activeSelection !== 'songs'){
-        console.log('ddd', state.search.activeSelection)
+    }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -185,7 +184,9 @@ const controlMusic = async (e) => {
             clearLoader();
             alert('Error processin music!')
         }
-    }else if(state.search.activeTab == 'songs' || state.search.activeSelection == 'songs'){
+    }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
+        console.log('it works')
+        state.search.activeSelection = false;
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -202,9 +203,12 @@ const controlMusic = async (e) => {
         }
     }
 }
+
+
 elements.musicContainer.addEventListener('click', e => {
 if(e.target.closest('.songs-item__discription') !== null && e.target.closest('.songs-item__discription').className == 'songs-item__discription'){
-    return state.search.activeSelection = 'songs';
+    return state.search.activeSelection = true;
+    // return state.search.activeTab = 'songs';
 }
 })
 window.addEventListener('hashchange', e => {

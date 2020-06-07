@@ -25,7 +25,6 @@ export const renderArtist = (music) => {
 
 
 export const renderAlbum = (music) => {
-    console.log('arribve toalbums: ', music)
     const markup = `
     <figure class="fig">
                 <button class="back__music"> BACK </button>

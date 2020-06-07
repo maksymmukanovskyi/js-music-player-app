@@ -82,7 +82,7 @@ export const renderLoader = parent => {
     viewBox="0 0 38 38" 
     preserveAspectRatio="xMinYMin meet"
     >
-    <text x="14" y="21" font-family="Monaco" font-size="2px" style="letter-spacing:0.6" fill="grey">LOADING
+    <text x="14" y="21" font-family="Monaco" font-size="2px" style="letter-spacing:0.6" fill="grey">LOADING ...
        <animate 
          attributeName="opacity"
          values="0;1;0" dur="1.8s"
