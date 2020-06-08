@@ -11,6 +11,7 @@ const renderMusicCard = (music, type) => {
     if(type == 'artist'){
         markup = `
         <li class="artist-card">
+        
             <a  href="#${music.artist.id}">
                 
                 <figure>

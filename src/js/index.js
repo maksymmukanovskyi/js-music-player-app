@@ -213,8 +213,11 @@ if(e.target.closest('.songs-item__discription') !== null && e.target.closest('.s
 }
 })
 window.addEventListener('hashchange', e => {
-    controlMusic(e)
+    console.log(e)
+    controlMusic(e);
 });
+
+
 elements.musicContainer.addEventListener('click', (e) => {
     if(e.target.className !== 'back__music') return;
     state.search.activeSelection = false;
@@ -267,9 +270,9 @@ const controlLikes = () => {
     }
 
 elements.musicContainer.addEventListener('click', (e) => {
-    console.log(e.target)
 
     if(e.target.matches('.header__likes, header__likes *'))
+    console.log('pressed')
         controlLikes()
 })
 
