@@ -208,7 +208,6 @@ const controlMusic = async (e) => {
 elements.musicContainer.addEventListener('click', e => {
 if(e.target.closest('.songs-item__discription') !== null && e.target.closest('.songs-item__discription').className == 'songs-item__discription'){
     return state.search.activeSelection = true;
-    // return state.search.activeTab = 'songs';
 }
 })
 window.addEventListener('hashchange', e => {
@@ -235,32 +234,39 @@ elements.musicContainer.addEventListener('click', (e) => {
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = () => {
     if(!state.likes) state.likes = new Likes();
-    const currentArtisrId = state.music.id;
-    const currentAlbumId = state.music.id;
     const currentId = state.music.id;
+    console.log(state.likes)
 
 
     if(state.search.activeTab == 'artist'){
-        if(!state.likes.isLiked(currentId)){
+        if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
-                currentId,
-                state.music.title,
-                state.music.picture,
-            );
+            currentId,
+            state.music.title,
+            state.music.picture,
+            )}
+
     }else if(state.search.activeTab == 'albums'){
-
+        if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
+            const newLike = state.likes.addAlbumLike(
+            currentId,
+            state.music.title,
+            state.music.picture,
+            )}
     }else if(state.search.activeTab == 'songs'){
-
+        if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
+            const newLike = state.likes.addSongLike(
+            currentId,
+            state.music.title,
+            state.music.picture,
+            )}
+    }
     }
 
-    
-    }
-}
+elements.musicContainer.addEventListener('click', (e) => {
+    console.log(e.target)
 
-// elements.musicContainer.addEventListener('click', (e) => {
-//     console.log(e.target)
-
-//     if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
-//         controlLikes()
-// })
+    if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
+        controlLikes()
+})
 

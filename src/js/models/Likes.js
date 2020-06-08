@@ -9,19 +9,19 @@ constructor(){
 addArtistLike(id, title, picture){
      const like = {id, title, picture}
      this.artistLikes.push(like);
-     this.persistData();
+     this.persistData('artistLikes', this.artistLikes);
      return like;
 };
 addAlbumLike(id, title, picture){
     const like = {id, title, picture}
-    this.likes.push(like);
-    this.persistData();
+    this.albumtLikes.push(like);
+    this.persistData('albumtLikes', this.albumtLikes);
     return like;
 };
 addSongLike(id, title, picture){
     const like = {id, title, picture}
-    this.likes.push(like);
-    this.persistData();
+    this.songLikes.push(like);
+    this.persistData('songLikes', this.songLikes);
     return like;
 };
 
@@ -29,16 +29,16 @@ addSongLike(id, title, picture){
 
 // };
 
-isLiked(id){
-    return this.artistLikes.findIndex(el => el.id === id) !== -1;
+isLiked(activeArray, id){
+    return activeArray.findIndex(el => el.id === id) !== -1;
 }
 
 // getNumLikes(){
 
 // }
 
-persistData(){
-localStorage.setItem('artistLikes', JSON.stringify(this.likes));
+persistData(string, item){
+localStorage.setItem(string, JSON.stringify(item));
 }
 
 // readStorageData(){
