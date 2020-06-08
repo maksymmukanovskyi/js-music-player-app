@@ -106,8 +106,12 @@ const headerFiltering = async (e) => {
         state.search.activeTab = btnType;
 
         if(btnType == 'artist'){
+    state.search.activeSelection = false;
+
         searchView.renderResults(state.search.artistSearch.data, state.pages.goToAristPage, btnType);
     }else if(btnType == 'albums'){
+    state.search.activeSelection = false;
+
         searchView.renderResults(state.search.albumSearch.data, state.pages.goToAlbumPage, btnType);
     }else if(btnType == 'songs'){
         searchView.renderResults(state.search.musicSearch.data, state.pages.goToMusicPage, btnType);
@@ -185,8 +189,6 @@ const controlMusic = async (e) => {
             alert('Error processin music!')
         }
     }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
-        console.log('it works')
-        state.search.activeSelection = false;
         searchView.clearResults();
         renderLoader(elements.mainContainer);
         searchView.clearTitle();
@@ -215,6 +217,7 @@ window.addEventListener('hashchange', e => {
 });
 elements.musicContainer.addEventListener('click', (e) => {
     if(e.target.className !== 'back__music') return;
+    state.search.activeSelection = false;
     if(state){
         searchView.clearResults();
         searchView.clearTitle();
@@ -238,7 +241,7 @@ const controlLikes = () => {
     console.log(state.likes)
 
 
-    if(state.search.activeTab == 'artist'){
+    if(!state.search.activeSelection && state.search.activeTab == 'artist'){
         if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
             currentId,
@@ -246,15 +249,15 @@ const controlLikes = () => {
             state.music.picture,
             )}
 
-    }else if(state.search.activeTab == 'albums'){
-        if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
+    }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
+        if(!state.likes.isLiked(state.likes.albumtLikes, currentId)){
             const newLike = state.likes.addAlbumLike(
             currentId,
             state.music.title,
             state.music.picture,
             )}
-    }else if(state.search.activeTab == 'songs'){
-        if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
+    }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
+        if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
             state.music.title,
@@ -266,7 +269,7 @@ const controlLikes = () => {
 elements.musicContainer.addEventListener('click', (e) => {
     console.log(e.target)
 
-    if(e.target.matches('.music__love__music, .music__love__music *, .music__love__tracks, music__love__tracks *, .header__likes, header__likes *'))
+    if(e.target.matches('.header__likes, header__likes *'))
         controlLikes()
 })
 
