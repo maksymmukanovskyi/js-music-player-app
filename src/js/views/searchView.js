@@ -10,17 +10,18 @@ const renderMusicCard = (music, type) => {
     let markup;
     if(type == 'artist'){
         markup = `
-        <li class="artist-card">
-        
-            <a  href="#${music.artist.id}">
-                
-                <figure>
-                        <img src="${music.artist.picture_medium}" alt="artist" class="artist-card__img">
-                        <button class="music__love">
-                        <svg class="header__likes">
+        <li class="artist-card card" >
+        <button class="music__love">
+                        <svg class="header__likes" data-gotoid="${music.artist.id}"
+                        data-gototitle="${music.artist.name}"
+                        data-gotoimage="${music.artist.picture_medium}">
                             <use href="./sprite.svg#icon-heart-outlined"></use>
                         </svg>
                         </button>
+
+            <a  href="#${music.artist.id}">
+                <figure>
+                        <img src="${music.artist.picture_medium}" alt="artist" class="artist-card__img">
                     <figcaption>
                         <p  class="artist-card__name">${limitString(music.artist.name)}</p>
                         <p class="artist-card__number-albums" >${limitString(music.title)}</p>
@@ -31,7 +32,7 @@ const renderMusicCard = (music, type) => {
         `;
     }else if(type === 'albums'){
         markup = `
-        <li class="album-card">
+        <li class="album-card card">
         <a  href="#${music.album.id}">
                             <figure>
                                 <img src="${music.album.cover_medium}" alt="albums-picture" class="artist-card__img">

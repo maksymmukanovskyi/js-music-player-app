@@ -159,6 +159,7 @@ elements.homeBtn.addEventListener('click', () => {
 
 const controlMusic = async (e) => {
     const id = window.location.hash.replace('#', '');
+    // const id = e.target.closest('.card').dataset.goto;
     if(id){
     if(!state.search.activeSelection && state.search.activeTab == 'artist'){
         searchView.clearResults();
@@ -218,6 +219,9 @@ window.addEventListener('hashchange', e => {
 });
 
 
+
+
+
 elements.musicContainer.addEventListener('click', (e) => {
     if(e.target.className !== 'back__music') return;
     state.search.activeSelection = false;
@@ -238,33 +242,44 @@ elements.musicContainer.addEventListener('click', (e) => {
 
 
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
-const controlLikes = () => {
+const controlLikes = (e) => {
     if(!state.likes) state.likes = new Likes();
-    const currentId = state.music.id;
     console.log(state.likes)
 
+    let currentId;
+    let currentTitle;
+    let currentPicture;
+    if(!state.music){
+        currentId = e.target.dataset.gotoid;
+        currentTitle = e.target.dataset.gototitle;
+        currentPicture = e.target.dataset.gotoimage;
+    }else{
+        currentId = state.music.id;
+        currentTitle = state.music.title;
+        currentPicture = state.music.picture;
+    }
 
     if(!state.search.activeSelection && state.search.activeTab == 'artist'){
         if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
             currentId,
-            state.music.title,
-            state.music.picture,
+            currentTitle,
+            currentPicture,
             )}
 
     }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
         if(!state.likes.isLiked(state.likes.albumtLikes, currentId)){
             const newLike = state.likes.addAlbumLike(
             currentId,
-            state.music.title,
-            state.music.picture,
+            currentTitle,
+            currentPicture,
             )}
     }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
-            state.music.title,
-            state.music.picture,
+            currentTitle,
+            currentPicture,
             )}
     }
     }
@@ -273,6 +288,10 @@ elements.musicContainer.addEventListener('click', (e) => {
 
     if(e.target.matches('.header__likes, header__likes *'))
     console.log('pressed')
-        controlLikes()
+        controlLikes(e)
+})
+elements.searchContent.addEventListener('click', e => {
+    if(!e.target.matches('.header__likes')) return;
+    controlLikes(e);
 })
 

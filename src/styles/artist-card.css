@@ -107,6 +107,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0);
+    z-index: 5;
 }
 
 .music__love svg {
@@ -116,8 +117,5 @@
     filter: drop-shadow(0px 1px 1px #000000e7);
 }
 
-.header__likes{
-    z-index: 5;
-}
 
   
