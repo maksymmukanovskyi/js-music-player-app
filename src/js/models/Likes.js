@@ -1,7 +1,7 @@
 export default class Likes{
 constructor(){
     this.artistLikes = [];
-    this.albumtLikes = [];
+    this.albumLikes = [];
     this.songLikes = [];
 
 }
@@ -14,8 +14,8 @@ addArtistLike(id, title, picture){
 };
 addAlbumLike(id, title, picture){
     const like = {id, title, picture}
-    this.albumtLikes.push(like);
-    this.persistData('albumtLikes', this.albumtLikes);
+    this.albumLikes.push(like);
+    this.persistData('albumLikes', this.albumLikes);
     return like;
 };
 addSongLike(id, title, picture){

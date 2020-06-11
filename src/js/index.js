@@ -245,10 +245,15 @@ elements.musicContainer.addEventListener('click', (e) => {
 const controlLikes = (e) => {
     if(!state.likes) state.likes = new Likes();
     console.log(state.likes)
+    console.log(!state.music)
+    console.log(e.target.dataset)
+
+
 
     let currentId;
     let currentTitle;
     let currentPicture;
+
     if(!state.music){
         currentId = e.target.dataset.gotoid;
         currentTitle = e.target.dataset.gototitle;
@@ -268,13 +273,13 @@ const controlLikes = (e) => {
             )}
 
     }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
-        if(!state.likes.isLiked(state.likes.albumtLikes, currentId)){
+        if(!state.likes.isLiked(state.likes.albumLikes, currentId)){
             const newLike = state.likes.addAlbumLike(
             currentId,
             currentTitle,
             currentPicture,
             )}
-    }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
+    }else if(state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
@@ -292,6 +297,7 @@ elements.musicContainer.addEventListener('click', (e) => {
 })
 elements.searchContent.addEventListener('click', e => {
     if(!e.target.matches('.header__likes')) return;
+    console.log('clicked')
     controlLikes(e);
 })
 

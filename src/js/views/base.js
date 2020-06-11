@@ -47,6 +47,13 @@ export const elementString = {
 
 export const musicPlayList = music => `
 <li class="songs-item">
+<button class="music__love__tracks">
+                        <svg class="header__likes" data-gotoid="${music.id}"
+                        data-gototitle="${music.title}"
+                        data-gotoimage="${music.album.cover_medium}">
+                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                        </svg>
+                </button>
     <a class="songs-link" href="#${music.id}" data-link="${music.preview}">
     <figure class="songs-item__figure">
          <button class="play">PREVIEW</button>
@@ -58,11 +65,7 @@ export const musicPlayList = music => `
                 <p class="songs-item__singer">${music.artist.name}</p>
 
             </div>
-             <button class="music__love__tracks">
-                        <svg class="header__likes">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
-                        </svg>
-                </button>
+             
             <p class="songs-item__music-time">${timeConvert(music.duration)}</p>
         </figcaption>
     </figure>
