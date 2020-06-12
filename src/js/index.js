@@ -289,13 +289,14 @@ const controlLikes = (e) => {
     }
     }
 
-elements.musicContainer.addEventListener('click', (e) => {
+// elements.musicContainer.addEventListener('click', (e) => {
 
-    if(e.target.matches('.header__likes, header__likes *'))
-    console.log('pressed')
-        controlLikes(e)
-})
-elements.searchContent.addEventListener('click', e => {
+//     if(e.target.matches('.header__likes, header__likes *'))
+//     console.log('pressed')
+//         controlLikes(e)
+// })
+
+elements.musicMainBox.addEventListener('click', e => {
     if(!e.target.matches('.header__likes')) return;
     console.log('clicked')
     controlLikes(e);
