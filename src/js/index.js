@@ -99,6 +99,7 @@ const buttonsSearch = async (e) => {
 
 const headerFiltering = async (e) => {
     if(state){
+        state.music = null;
         searchView.clearResults();
         searchView.clearTitle();
         window.pageYOffset;
@@ -225,6 +226,7 @@ window.addEventListener('hashchange', e => {
 elements.musicContainer.addEventListener('click', (e) => {
     if(e.target.className !== 'back__music') return;
     state.search.activeSelection = false;
+    state.music = null;
     if(state){
         searchView.clearResults();
         searchView.clearTitle();
@@ -246,7 +248,6 @@ const controlLikes = (e) => {
     if(!state.likes) state.likes = new Likes();
     console.log(state.likes)
     console.log(!state.music)
-    console.log(e.target.dataset)
 
 
 
@@ -265,6 +266,10 @@ const controlLikes = (e) => {
     }
 
     if(!state.search.activeSelection && state.search.activeTab == 'artist'){
+    console.log('!isLiked', !state.likes.isLiked(state.likes.artistLikes, currentId))
+    console.log('currentId', currentId)
+
+
         if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
             currentId,
@@ -279,7 +284,7 @@ const controlLikes = (e) => {
             currentTitle,
             currentPicture,
             )}
-    }else if(state.search.activeTab == 'songs'){
+    }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
@@ -289,16 +294,25 @@ const controlLikes = (e) => {
     }
     }
 
-// elements.musicContainer.addEventListener('click', (e) => {
+    const controlTracksLikes = e => {
+    if(!state.likes) state.likes = new Likes();
+    if(!state.likes.isLiked(state.likes.songLikes, e.target.dataset.gotoid)){
+        const newLike = state.likes.addSongLike(
+            e.target.dataset.gotoid,
+            e.target.dataset.gototitle,
+            e.target.dataset.gotoimage,
+        )
+    }
+}
 
-//     if(e.target.matches('.header__likes, header__likes *'))
-//     console.log('pressed')
-//         controlLikes(e)
-// })
 
 elements.musicMainBox.addEventListener('click', e => {
     if(!e.target.matches('.header__likes')) return;
-    console.log('clicked')
     controlLikes(e);
+})
+
+elements.musicMainBox.addEventListener('click', e => {
+    if(!e.target.matches('.track__likes')) return;
+    controlTracksLikes(e);
 })
 
