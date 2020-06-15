@@ -15,7 +15,7 @@ export const renderArtist = (music) => {
 
     </figure>
                     <ul class="playlist">
-                    ${music.tracklist.map(el => musicPlayList(el)).join('')}
+                    ${music.tracklist.map(el => musicPlayList(el, null, null)).join('')}
                     <ul>`;
     
 
@@ -44,7 +44,7 @@ export const renderAlbum = (music) => {
     </figure>
                 
                     <ul class="playlist">
-                    ${music.tracklist.map(el => musicPlayList(el)).join('')}
+                    ${music.tracklist.map(el => musicPlayList(el, music.picture, 'albums')).join('')}
                     <ul>`;
     elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
 }

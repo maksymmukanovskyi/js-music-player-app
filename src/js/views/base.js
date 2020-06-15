@@ -45,11 +45,14 @@ export const elementString = {
     loader: 'scene',
 }
 
-export const musicPlayList = music => `
+export const musicPlayList = (music, pics, activeTab) =>{
+// console.log('album music', music.album.cover_medium)
+   let markup = `
 <li class="songs-item">
 <button class="music__love__tracks">
                         <svg class="track__likes" data-gotoid="${music.id}"
-                        data-gototitle="${music.title}">
+                        data-gototitle="${music.title}"
+                        data-gotoimage="${activeTab == 'albums' ? pics :music.album.cover_medium}">
                             <use href="./sprite.svg#icon-heart-outlined"></use>
                         </svg>
                 </button>
@@ -69,7 +72,8 @@ export const musicPlayList = music => `
         </figcaption>
     </figure>
 </a>
-</li>`;
+</li>`
+return markup;};
 
 export const renderLoader = parent => {
     const loader = `
