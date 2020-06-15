@@ -245,12 +245,8 @@ elements.musicContainer.addEventListener('click', (e) => {
 
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = (e) => {
+    console.log('state.likes', state.likes);
     if(!state.likes) state.likes = new Likes();
-    console.log(state.likes)
-    console.log(!state.music)
-
-
-
     let currentId;
     let currentTitle;
     let currentPicture;
@@ -266,10 +262,6 @@ const controlLikes = (e) => {
     }
 
     if(!state.search.activeSelection && state.search.activeTab == 'artist'){
-    console.log('!isLiked', !state.likes.isLiked(state.likes.artistLikes, currentId))
-    console.log('currentId', currentId)
-
-
         if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
             currentId,
@@ -295,6 +287,8 @@ const controlLikes = (e) => {
     }
 
     const controlTracksLikes = e => {
+    console.log('state.likes', state.likes);
+
     if(!state.likes) state.likes = new Likes();
     if(!state.likes.isLiked(state.likes.songLikes, e.target.dataset.gotoid)){
         const newLike = state.likes.addSongLike(

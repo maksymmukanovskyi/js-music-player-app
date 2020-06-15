@@ -49,8 +49,7 @@ export const musicPlayList = music => `
 <li class="songs-item">
 <button class="music__love__tracks">
                         <svg class="track__likes" data-gotoid="${music.id}"
-                        data-gototitle="${music.title}"
-                        data-gotoimage="${music.album.cover_medium}">
+                        data-gototitle="${music.title}">
                             <use href="./sprite.svg#icon-heart-outlined"></use>
                         </svg>
                 </button>

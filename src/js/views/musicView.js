@@ -25,6 +25,8 @@ export const renderArtist = (music) => {
 
 
 export const renderAlbum = (music) => {
+    console.log('music.tracklist', music.tracklist);
+
     const markup = `
     <figure class="fig">
                 <button class="back__music"> BACK </button>
@@ -48,6 +50,7 @@ export const renderAlbum = (music) => {
 }
 
 export const renderTrack = (music) => {
+
     const markup = `
     <figure class="fig">
                 <button class="back__music"> BACK </button>
