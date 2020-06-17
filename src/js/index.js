@@ -267,7 +267,9 @@ const controlLikes = (e) => {
             currentId,
             currentTitle,
             currentPicture,
-            )}
+            )}else{
+                state.likes.removeLike(state.likes.artistLikes, currentId);
+            };
 
     }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
         if(!state.likes.isLiked(state.likes.albumLikes, currentId)){
@@ -275,14 +277,18 @@ const controlLikes = (e) => {
             currentId,
             currentTitle,
             currentPicture,
-            )}
+            )}else{
+                state.likes.removeLike(state.likes.albumLikes, currentId);
+            };
     }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
             currentTitle,
             currentPicture,
-            )}
+            )}else{
+                state.likes.removeLike(state.likes.songLikes, currentId);
+            };
     }
     }
 
@@ -296,7 +302,9 @@ const controlLikes = (e) => {
             e.target.dataset.gototitle,
             e.target.dataset.gotoimage,
         )
-    }
+    }else{
+        state.likes.removeLike(state.likes.songLikes, e.target.dataset.gotoid);
+    };
 }
 
 

@@ -46,7 +46,6 @@ export const elementString = {
 }
 
 export const musicPlayList = (music, pics, activeTab) =>{
-// console.log('album music', music.album.cover_medium)
    let markup = `
 <li class="songs-item">
 <button class="music__love__tracks">

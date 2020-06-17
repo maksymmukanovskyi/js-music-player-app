@@ -25,9 +25,17 @@ addSongLike(id, title, picture){
     return like;
 };
 
-// removeLike(){
-
-// };
+removeLike(activeArray, id){
+const index = activeArray.findIndex(el => el.id === id);
+activeArray.splice(index, 1);
+if(activeArray == this.artistLikes){
+    this.persistData( 'artistLikes' , activeArray);
+}else if(activeArray == this.albumLikes){
+    this.persistData( 'albumLikes' , activeArray);
+}else if(activeArray == this.songLikes){
+    this.persistData( 'songLikes' , activeArray);
+}
+};
 
 isLiked(activeArray, id){
     return activeArray.findIndex(el => el.id === id) !== -1;
