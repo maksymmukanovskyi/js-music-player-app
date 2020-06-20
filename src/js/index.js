@@ -5,6 +5,7 @@ import Music from './models/Music';
 import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
+import * as likeViews from './views/likeViews';
 import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
 
  export const state = {};
@@ -245,8 +246,9 @@ elements.musicContainer.addEventListener('click', (e) => {
 
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = (e) => {
-    console.log('state.likes', state.likes);
     if(!state.likes) state.likes = new Likes();
+    console.log(state.likes);
+
     let currentId;
     let currentTitle;
     let currentPicture;
@@ -267,8 +269,15 @@ const controlLikes = (e) => {
             currentId,
             currentTitle,
             currentPicture,
-            )}else{
+            );
+
+                likeViews.toggleLikeBtn(true, e.target);
+                console.log(e.target);
+            }else{
                 state.likes.removeLike(state.likes.artistLikes, currentId);
+                likeViews.toggleLikeBtn(false, e.target);
+                console.log(e.target);
+
             };
 
     }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
@@ -277,8 +286,11 @@ const controlLikes = (e) => {
             currentId,
             currentTitle,
             currentPicture,
-            )}else{
+            );
+
+        }else{
                 state.likes.removeLike(state.likes.albumLikes, currentId);
+
             };
     }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
@@ -286,8 +298,11 @@ const controlLikes = (e) => {
             currentId,
             currentTitle,
             currentPicture,
-            )}else{
+            );
+
+        }else{
                 state.likes.removeLike(state.likes.songLikes, currentId);
+
             };
     }
     }
@@ -301,9 +316,11 @@ const controlLikes = (e) => {
             e.target.dataset.gotoid,
             e.target.dataset.gototitle,
             e.target.dataset.gotoimage,
-        )
+        );
+
     }else{
         state.likes.removeLike(state.likes.songLikes, e.target.dataset.gotoid);
+
     };
 }
 

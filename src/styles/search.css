@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-around;
     position: fixed;
-    z-index: +2;
+    z-index: 4;
     left: 10%;
     width: 90%;
     /* flex-wrap: wrap; */
@@ -147,8 +147,8 @@
     
     
     .search {
-        width: 90%;
-        left: 10%;
+        width: 88%;
+        left: 12%;
    }
    .search__form {
     flex-basis: 60%;
