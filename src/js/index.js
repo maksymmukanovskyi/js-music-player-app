@@ -247,13 +247,15 @@ elements.musicContainer.addEventListener('click', (e) => {
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = (target) => {
     if(!state.likes) state.likes = new Likes();
-    console.log(state.likes);
+    console.log(target.className.baseVal == 'track__likes');
+    console.log(state.likes)
 
     let currentId;
     let currentTitle;
     let currentPicture;
+    
 
-    if(!state.music){
+    if(!state.music || target.className.baseVal == 'track__likes'){
         currentId = target.dataset.gotoid;
         currentTitle = target.dataset.gototitle;
         currentPicture = target.dataset.gotoimage;
@@ -289,58 +291,61 @@ const controlLikes = (target) => {
             currentTitle,
             currentPicture,
             );
+            likeViews.toggleLikeBtn(true, target);
+                console.log(state.likes.albumLikes);
 
         }else{
                 state.likes.removeLike(state.likes.albumLikes, currentId);
+                likeViews.toggleLikeBtn(false, target);
+                console.log(state.likes.albumLikes);
 
             };
-    }else if(state.search.activeSelection || state.search.activeTab == 'songs'){
+    }
+    
+    else if(state.search.activeSelection || state.search.activeTab == 'songs'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
             currentTitle,
             currentPicture,
             );
+            likeViews.toggleLikeBtn(true, target);
+            console.log(state.likes.songLikes);
 
         }else{
                 state.likes.removeLike(state.likes.songLikes, currentId);
-
+                likeViews.toggleLikeBtn(false, target);
+                console.log(state.likes.songLikes);
             };
     }
     }
 
-    const controlTracksLikes = e => {
-    console.log('state.likes', state.likes);
+//     const controlTracksLikes = e => {
+//     console.log('state.likes', state.likes);
 
-    if(!state.likes) state.likes = new Likes();
-    if(!state.likes.isLiked(state.likes.songLikes, e.target.dataset.gotoid)){
-        const newLike = state.likes.addSongLike(
-            e.target.dataset.gotoid,
-            e.target.dataset.gototitle,
-            e.target.dataset.gotoimage,
-        );
+//     if(!state.likes) state.likes = new Likes();
+//     if(!state.likes.isLiked(state.likes.songLikes, e.target.dataset.gotoid)){
+//         const newLike = state.likes.addSongLike(
+//             e.target.dataset.gotoid,
+//             e.target.dataset.gototitle,
+//             e.target.dataset.gotoimage,
+//         );
 
-    }else{
-        state.likes.removeLike(state.likes.songLikes, e.target.dataset.gotoid);
+//     }else{
+//         state.likes.removeLike(state.likes.songLikes, e.target.dataset.gotoid);
 
-    };
-}
+//     };
+// }
 
 
 elements.musicMainBox.addEventListener('click', e => {
-    let target;
-
     if(e.target.matches('.header__likes')){
-        target = e.target;
+        controlLikes(e.target);
     }else if(e.target.nodeName == 'use'){
-        target = e.target.parentNode;
+        controlLikes(e.target.parentNode);
+    }else if(e.target.matches('.track__likes')){
+        controlLikes(e.target);
     }
-
-    controlLikes(target);
 })
 
-elements.musicMainBox.addEventListener('click', e => {
-    if(!e.target.matches('.track__likes')) return;
-    controlTracksLikes(e);
-})
 
