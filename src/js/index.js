@@ -245,7 +245,7 @@ elements.musicContainer.addEventListener('click', (e) => {
 
 
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
-const controlLikes = (e) => {
+const controlLikes = (target) => {
     if(!state.likes) state.likes = new Likes();
     console.log(state.likes);
 
@@ -254,9 +254,9 @@ const controlLikes = (e) => {
     let currentPicture;
 
     if(!state.music){
-        currentId = e.target.dataset.gotoid;
-        currentTitle = e.target.dataset.gototitle;
-        currentPicture = e.target.dataset.gotoimage;
+        currentId = target.dataset.gotoid;
+        currentTitle = target.dataset.gototitle;
+        currentPicture = target.dataset.gotoimage;
     }else{
         currentId = state.music.id;
         currentTitle = state.music.title;
@@ -271,12 +271,14 @@ const controlLikes = (e) => {
             currentPicture,
             );
 
-                likeViews.toggleLikeBtn(true, e.target);
-                console.log(e.target);
+                likeViews.toggleLikeBtn(true, target);
+                console.log(state.likes.artistLikes);
+
             }else{
+
                 state.likes.removeLike(state.likes.artistLikes, currentId);
-                likeViews.toggleLikeBtn(false, e.target);
-                console.log(e.target);
+                likeViews.toggleLikeBtn(false, target);
+                console.log(state.likes.artistLikes);
 
             };
 
@@ -326,8 +328,15 @@ const controlLikes = (e) => {
 
 
 elements.musicMainBox.addEventListener('click', e => {
-    if(!e.target.matches('.header__likes')) return;
-    controlLikes(e);
+    let target;
+
+    if(e.target.matches('.header__likes')){
+        target = e.target;
+    }else if(e.target.nodeName == 'use'){
+        target = e.target.parentNode;
+    }
+
+    controlLikes(target);
 })
 
 elements.musicMainBox.addEventListener('click', e => {
