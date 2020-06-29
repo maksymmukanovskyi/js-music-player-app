@@ -5,8 +5,8 @@ export const clearInput = () => elements.searchInput.value = '';
 export const clearResults = () => [elements.searchContent,elements.songList, elements.musicContainer].forEach(el => el.innerHTML = '');
 export const clearTitle = () => elements.artistTitle.innerHTML = '';
 
-
 const renderMusicCard = (music, type) => {
+
     let markup;
     if(type == 'artist'){
         markup = `
@@ -15,7 +15,8 @@ const renderMusicCard = (music, type) => {
                         <svg class="header__likes" data-gotoid="${music.artist.id}"
                         data-gototitle="${music.artist.name}"
                         data-gotoimage="${music.artist.picture_medium}">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.artistLikes, music.artist.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}
+                            ></use>
                         </svg>
                         </button>
 
@@ -38,7 +39,7 @@ const renderMusicCard = (music, type) => {
                         data-gotoid="${music.album.id}"
                         data-gototitle="${music.album.title}"
                         data-gotoimage="${music.album.cover_medium}">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.albumLikes, music.album.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                         </button>
         <a  href="#${music.album.id}">

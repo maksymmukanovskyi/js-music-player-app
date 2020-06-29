@@ -1,3 +1,5 @@
+import {state} from '../index';
+
 export const elements = {
     logoSign: document.querySelector('.logo'),
     homeBtn: document.querySelector('.menu__home'),
@@ -52,7 +54,7 @@ export const musicPlayList = (music, pics, activeTab) =>{
                         <svg class="track__likes" data-gotoid="${music.id}"
                         data-gototitle="${music.title}"
                         data-gotoimage="${activeTab == 'albums' ? pics :music.album.cover_medium}">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.songLikes, music.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                 </button>
     <a class="songs-link" href="#${music.id}" data-link="${music.preview}">

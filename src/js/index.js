@@ -32,7 +32,7 @@ const controlSearch = async () => {
 
         try{
             await state.search.getResults();
-            searchView.renderResults(state.search.artistSearch.data)
+            searchView.renderResults(state.search.artistSearch.data);
             clearLoader();
         }catch(error){
             alert('Something wrong with search....')
@@ -216,7 +216,6 @@ if(e.target.closest('.songs-item__discription') !== null && e.target.closest('.s
 }
 })
 window.addEventListener('hashchange', e => {
-    console.log(e)
     controlMusic(e);
 });
 
@@ -247,7 +246,6 @@ elements.musicContainer.addEventListener('click', (e) => {
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = (target) => {
     if(!state.likes) state.likes = new Likes();
-    console.log('equal or not', target.className.baseVal == 'track__likes');
     console.log('state', state.likes)
 
     let currentId;
@@ -274,14 +272,10 @@ const controlLikes = (target) => {
             );
 
                 likeViews.toggleLikeBtn(true, target);
-                console.log(state.likes.artistLikes);
-
             }else{
 
                 state.likes.removeLike(state.likes.artistLikes, currentId);
                 likeViews.toggleLikeBtn(false, target);
-                console.log(state.likes.artistLikes);
-
             };
 
     }else if(!state.search.activeSelection && state.search.activeTab == 'albums'&& target.className.baseVal !== 'track__likes'){
@@ -292,13 +286,10 @@ const controlLikes = (target) => {
             currentPicture,
             );
             likeViews.toggleLikeBtn(true, target);
-                console.log(state.likes.albumLikes);
 
         }else{
                 state.likes.removeLike(state.likes.albumLikes, currentId);
                 likeViews.toggleLikeBtn(false, target);
-                console.log(state.likes.albumLikes);
-
             };
     }
     
@@ -310,33 +301,12 @@ const controlLikes = (target) => {
             currentPicture,
             );
             likeViews.toggleLikeBtn(true, target);
-            console.log(state.likes.songLikes);
-
         }else{
                 state.likes.removeLike(state.likes.songLikes, currentId);
                 likeViews.toggleLikeBtn(false, target);
-                console.log(state.likes.songLikes);
             };
     }
     }
-
-//     const controlTracksLikes = e => {
-//     console.log('state.likes', state.likes);
-
-//     if(!state.likes) state.likes = new Likes();
-//     if(!state.likes.isLiked(state.likes.songLikes, e.target.dataset.gotoid)){
-//         const newLike = state.likes.addSongLike(
-//             e.target.dataset.gotoid,
-//             e.target.dataset.gototitle,
-//             e.target.dataset.gotoimage,
-//         );
-
-//     }else{
-//         state.likes.removeLike(state.likes.songLikes, e.target.dataset.gotoid);
-
-//     };
-// }
-
 
 elements.musicMainBox.addEventListener('click', e => {
     if(e.target.matches('.header__likes')){
@@ -346,6 +316,12 @@ elements.musicMainBox.addEventListener('click', e => {
     }else if(e.target.matches('.track__likes')){
         controlLikes(e.target);
     }
+})
+
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+    state.likes.readStorageData();
+    console.log(state);
 })
 
 

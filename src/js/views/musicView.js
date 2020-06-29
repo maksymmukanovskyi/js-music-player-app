@@ -1,4 +1,5 @@
 import {elements, musicPlayList, limitString} from './base';
+import {state} from '../index';
 
 export const renderArtist = (music) => {
     const markup = `
@@ -6,7 +7,7 @@ export const renderArtist = (music) => {
                  <button class="back__music"> BACK </button>
                  <button class="music__love__music">
                         <svg class="header__likes">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.artistLikes, music.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                 </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
@@ -32,7 +33,7 @@ export const renderAlbum = (music) => {
                 <button class="back__music"> BACK </button>
                 <button class="music__love__music">
                         <svg class="header__likes">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.albumLikes, music.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                 </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">
@@ -56,7 +57,7 @@ export const renderTrack = (music) => {
                 <button class="back__music"> BACK </button>
                 <button class="music__love__music">
                         <svg class="header__likes">
-                            <use href="./sprite.svg#icon-heart-outlined"></use>
+                            <use href=${state.likes.isLiked(state.likes.songLikes, music.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                 </button>
                 <img src="${music.picture}" alt="${music.title}" class="music__img">

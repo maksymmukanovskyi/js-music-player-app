@@ -38,7 +38,7 @@ if(activeArray == this.artistLikes){
 };
 
 isLiked(activeArray, id){
-    return activeArray.findIndex(el => el.id === id) !== -1;
+    return activeArray.findIndex(el => el.id == id) !== -1;
 }
 
 // getNumLikes(){
@@ -49,10 +49,13 @@ persistData(string, item){
 localStorage.setItem(string, JSON.stringify(item));
 }
 
-// readStorageData(){
-
-// }
-
-
+readStorageData(){
+    const artistStorage = JSON.parse(localStorage.getItem('artistLikes'));
+    const albumStorage = JSON.parse(localStorage.getItem('albumLikes'));
+    const songStorage = JSON.parse(localStorage.getItem('songLikes'));
+    if(artistStorage) this.artistLikes = artistStorage;
+    if(albumStorage) this.albumLikes = albumStorage;
+    if(songStorage) this.songLikes = songStorage;
+}
 
 }
