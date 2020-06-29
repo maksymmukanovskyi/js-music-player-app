@@ -247,8 +247,8 @@ elements.musicContainer.addEventListener('click', (e) => {
 ///////////////////////////////// LIKES CONROLLER ////////////////////////////
 const controlLikes = (target) => {
     if(!state.likes) state.likes = new Likes();
-    console.log(target.className.baseVal == 'track__likes');
-    console.log(state.likes)
+    console.log('equal or not', target.className.baseVal == 'track__likes');
+    console.log('state', state.likes)
 
     let currentId;
     let currentTitle;
@@ -265,7 +265,7 @@ const controlLikes = (target) => {
         currentPicture = state.music.picture;
     }
 
-    if(!state.search.activeSelection && state.search.activeTab == 'artist'){
+    if(!state.search.activeSelection && state.search.activeTab == 'artist' && target.className.baseVal !== 'track__likes'){
         if(!state.likes.isLiked(state.likes.artistLikes, currentId)){
             const newLike = state.likes.addArtistLike(
             currentId,
@@ -284,7 +284,7 @@ const controlLikes = (target) => {
 
             };
 
-    }else if(!state.search.activeSelection && state.search.activeTab == 'albums'){
+    }else if(!state.search.activeSelection && state.search.activeTab == 'albums'&& target.className.baseVal !== 'track__likes'){
         if(!state.likes.isLiked(state.likes.albumLikes, currentId)){
             const newLike = state.likes.addAlbumLike(
             currentId,
@@ -302,7 +302,7 @@ const controlLikes = (target) => {
             };
     }
     
-    else if(state.search.activeSelection || state.search.activeTab == 'songs'){
+    else if(state.search.activeSelection || state.search.activeTab == 'songs' || target.className.baseVal == 'track__likes'){
         if(!state.likes.isLiked(state.likes.songLikes, currentId)){
             const newLike = state.likes.addSongLike(
             currentId,
