@@ -68,7 +68,7 @@ export const renderTrack = (music) => {
                     <p class="album__info-data">Preview: ${music.preview}</p>
                     <p class="album__info-data">Time: ${music.time}</p>
                     <p class="album__info-data">Release: ${music.releaseDate}</p>
-                    <p class="album__info-data">Original link: ${music.originalLink}</p>
+                    <p class="album__info-data"><a href=${music.originalLink}>Get more info</a></p>
                 </div>
     </figure>`;
     elements.musicContainer.insertAdjacentHTML('afterbegin', markup);
