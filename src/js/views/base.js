@@ -16,7 +16,7 @@ export const elements = {
     artistsLikeCount: document.querySelector('.sub-menu__artist__likes'),
     albumsLikeCount: document.querySelector('.sub-menu__albums__likes'),
     songsLikeCount: document.querySelector('.sub-menu__songs__likes'),
-    likesNavigation: document.querySelectorAll('.sub-menu__item'),
+    likesNavigation: document.querySelector('.sub-menu'),
 }
 
 

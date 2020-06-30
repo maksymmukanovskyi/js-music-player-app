@@ -356,9 +356,9 @@ const controlLikesNavigationButtons = type => {
     renderLoader(elements.mainContainer);
     if(type == 'artist'){
         likeViews.renderFavourite(state.likes.artistLikes, type);
-    }else if(target == 'albums'){
+    } else if (type == 'albums'){
         likeViews.renderFavourite(state.likes.albumLikes, type);
-    }else if(target == 'songs'){
+    } else if (type == 'songs'){
         likeViews.renderFavourite(state.likes.songLikes, type);
     }
     clearLoader();
@@ -367,8 +367,8 @@ const controlLikesNavigationButtons = type => {
 }
 
 
-Array.from(elements.likesNavigation).map(el => el.addEventListener('click', e => {
+elements.likesNavigation.addEventListener('click', e => {
 let target = e.target.closest('.sub-menu__link').textContent.split(' ')[0].toLowerCase();
 controlLikesNavigationButtons(target);
-}))
+})
 
