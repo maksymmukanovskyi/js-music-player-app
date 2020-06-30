@@ -41,9 +41,9 @@ isLiked(activeArray, id){
     return activeArray.findIndex(el => el.id == id) !== -1;
 }
 
-// getNumLikes(){
-
-// }
+getNumLikes(type){
+    return type.length;
+}
 
 persistData(string, item){
 localStorage.setItem(string, JSON.stringify(item));

@@ -47,3 +47,19 @@
 .album__track-duration {
     text-align: right;
 }
+.album-card figure {
+    position: relative;
+    z-index: 1;
+}
+
+.album-card figcaption {
+    background-color: var(--serch);
+    z-index: -1;
+    position: relative;
+    top: -2px;
+    /* width: 9.56rem; */
+    margin: auto;
+    padding: 1rem 0.5rem;
+    border-radius: 0.125rem;
+    box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.65),inset 0 0.0625rem 0 0 rgba(255, 255, 255, 0.15);
+}

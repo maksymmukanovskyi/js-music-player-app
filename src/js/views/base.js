@@ -12,7 +12,10 @@ export const elements = {
     cardContainer: document.querySelectorAll('.card-container'),
     songList:document.querySelector('.songs-list'),
     listType:document.querySelector('.chart-list'),
-    musicContainer:document.querySelector('.music__view')
+    musicContainer:document.querySelector('.music__view'),
+    artistsLikeCount: document.querySelector('.sub-menu__artist__likes'),
+    albumsLikeCount: document.querySelector('.sub-menu__albums__likes'),
+    songsLikeCount: document.querySelector('.sub-menu__songs__likes'),
 }
 
 

@@ -306,6 +306,18 @@ const controlLikes = (target) => {
                 likeViews.toggleLikeBtn(false, target);
             };
     }
+
+    likeViews.toggleLikesCount(
+        [elements.artistsLikeCount,
+        elements.albumsLikeCount,
+        elements.songsLikeCount
+        ],
+        [state.likes.getNumLikes(state.likes.artistLikes),
+        state.likes.getNumLikes(state.likes.albumLikes),
+        state.likes.getNumLikes(state.likes.songLikes),  
+        ]
+        );
+
     }
 
 elements.musicMainBox.addEventListener('click', e => {
@@ -321,6 +333,17 @@ elements.musicMainBox.addEventListener('click', e => {
 window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
+    
+    likeViews.toggleLikesCount(
+        [elements.artistsLikeCount,
+        elements.albumsLikeCount,
+        elements.songsLikeCount
+        ],
+        [state.likes.getNumLikes(state.likes.artistLikes),
+        state.likes.getNumLikes(state.likes.albumLikes),
+        state.likes.getNumLikes(state.likes.songLikes),  
+        ]
+        );
     console.log(state);
 })
 

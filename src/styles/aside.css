@@ -43,6 +43,7 @@
     padding: 1.125rem 0 1.125rem 1.375rem;
     display: block;
     border-left: 0.1875rem solid transparent;
+    
 }
 
 .sub-menu__link {
@@ -57,6 +58,21 @@
     background-color: #1c1c1c;
     border-left: 0.1875rem solid var(--red);
 }
+.sub-menu__artist__likes, .sub-menu__albums__likes, .sub-menu__songs__likes{
+    display: inline-block;
+    padding: 4px 8px 2px 8px;
+    color: var(--card);
+    font-size: var(--medium);
+    background-color: white;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 5px;
+}
+
+
+
 @media (min-width: 480px) {
     .aside {
         display: none;
