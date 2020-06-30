@@ -333,7 +333,7 @@ elements.musicMainBox.addEventListener('click', e => {
 window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
-    
+
     likeViews.toggleLikesCount(
         [elements.artistsLikeCount,
         elements.albumsLikeCount,
@@ -347,4 +347,28 @@ window.addEventListener('load', () => {
     console.log(state);
 })
 
+//////////////////////  LIKES NAVIGATION CONTROLLER  //////////////////////////
+
+const controlLikesNavigationButtons = type => {
+    searchView.clearResults();
+    searchView.clearTitle();
+    window.pageYOffset;
+    renderLoader(elements.mainContainer);
+    if(type == 'artist'){
+        likeViews.renderFavourite(state.likes.artistLikes, type);
+    }else if(target == 'albums'){
+        likeViews.renderFavourite(state.likes.albumLikes, type);
+    }else if(target == 'songs'){
+        likeViews.renderFavourite(state.likes.songLikes, type);
+    }
+    clearLoader();
+
+
+}
+
+
+Array.from(elements.likesNavigation).map(el => el.addEventListener('click', e => {
+let target = e.target.closest('.sub-menu__link').textContent.split(' ')[0].toLowerCase();
+controlLikesNavigationButtons(target);
+}))
 
