@@ -1,4 +1,6 @@
 import {elements, limitString, musicPlayList} from './base';
+import {state} from '../index';
+
 
 
 export const toggleLikeBtn = (isLiked, target) => {
@@ -14,66 +16,100 @@ export const toggleLikesCount = (types, numLikes) => {
 }
 
 export const renderFavourite = (music, type) => {
-    console.log(music);
-    console.log(type)
     let markup;
-    // if(type == 'artist'){
-    //     markup =`<div>
-    //     <h2>${music.data[0].artist.name}</h2>
-    //     <ul>
-    //     ${music.map(el => 
-    //         `<li class="album-card">
-    //         <a  href="#${el.artist.id}">
-    //             <figure>
-    //                 <img src="${el.artist.cover_medium}" alt="albums-picture" class="artist-card__img">
-    //                 <figcaption>
-    //                     <p class="artist-card__name">${limitString(el.artist.title)}</p>
-    //                 </figcaption>
-    //             </figure>
-    //             </a>
-    //             </li>`  
-    //         )}
-    //     </ul>
-    // </div>`;
-    // }else if(type == 'albums'){
-    // markup =`<div>
-    // <h2>${music.data[0].album.name}</h2>
-    //     <ul>
-    //     ${music.map(el => 
-    //         `<li class="album-card">
-    //         <a  href="#${el.album.id}">
-    //             <figure>
-    //                 <img src="${el.album.cover_medium}" alt="albums-picture" class="artist-card__img">
-    //                 <figcaption>
-    //                     <p class="artist-card__name">${limitString(el.album.title)}</p>
-    //                 </figcaption>
-    //             </figure>
-    //             </a>
-    //             </li>`  
-    //         )}
-    //     </ul>
-    // </div>`;
-    // }else if(type == 'songs'){
-    //     markup =`<div>
-    //     <h2>${music.data[0].album.name}</h2>
-    //         <ul>
-    //         ${music.map(el => 
-    //     `<li class="album-card">
-    //         <a  href="#${el.album.id}">
-    //         <figure>
-    //             <img src="${el.album.cover_medium}" alt="albums-picture" class="artist-card__img">
-    //             <figcaption>
-    //                 <p class="artist-card__name">${limitString(el.album.title)}</p>
-    //              </figcaption>
-    //         </figure>
-    //         </a>
-    //         </li>`  
-    //     )}
-    //         </ul>
-    //     </div>`;        
-    // }
+    if(type == 'artist'){
+        markup =`<div>
+        <button class="back__music"> BACK </button>
+        <h1 class="love__title">LOVED ${type.toUpperCase()}</h1>
+        <ul class="playlist">
+        ${music.map(el => 
+            `<li class="songs-item">
+            
+                <a class="songs-link" href="#${el.id}">
+                <figure class="songs-item__figure">
+                
+                    <figcaption class="songs-item__discription__love" >
+                         <div >
+                         <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
+                             <p class="songs-item__music-name__love">${limitString(el.title)}</p>
+                        </div>
+                        <button class="music__love__tracks">
+                                    <svg class="track__likes" data-gotoid="${el.id}"
+                                    data-gototitle="${el.title}"
+                                    data-gotoimage="${el.picture}">
+                                        <use href=${state.likes.isLiked(state.likes.artistLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+                                    </svg>
+                            </button>
+                    </figcaption>
+                </figure>
+            </a>
+            </li>`
+            ).join('')}
+        </ul>
+    </div>`;
+    }else if(type == 'albums'){
+        markup =`<div>
+        <button class="back__music"> BACK </button>
+        <h1 class="love__title">LOVED ${type.toUpperCase()}</h1>
+        <ul class="playlist">
+        ${music.map(el => 
+            `<li class="songs-item">
+            
+                <a class="songs-link" href="#${el.id}">
+                <figure class="songs-item__figure">
+                
+                    <figcaption class="songs-item__discription__love" >
+                         <div >
+                         <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
+                             <p class="songs-item__music-name__love">${limitString(el.title)}</p>
+                        </div>
+                        <button class="music__love__tracks">
+                                    <svg class="track__likes" data-gotoid="${el.id}"
+                                    data-gototitle="${el.title}"
+                                    data-gotoimage="${el.picture}">
+                                        <use href=${state.likes.isLiked(state.likes.albumLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+                                    </svg>
+                            </button>
+                    </figcaption>
+                </figure>
+            </a>
+            </li>`
+            ).join('')}
+        </ul>
+    </div>`;
+    }else if(type == 'songs'){
+        markup =`<div>
+        <button class="back__music"> BACK </button>
+        <h1 class="love__title">LOVED ${type.toUpperCase()}</h1>
+        <ul class="playlist">
+        ${music.map(el => 
+            `<li class="songs-item">
+            
+                <a class="songs-link" href="#${el.id}">
+                <figure class="songs-item__figure">
+                
+                    <figcaption class="songs-item__discription__love" >
+                         <div >
+                         <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
+                             <p class="songs-item__music-name__love">${limitString(el.title)}</p>
+                        </div>
+                        <button class="music__love__tracks">
+                                    <svg class="track__likes" data-gotoid="${el.id}"
+                                    data-gototitle="${el.title}"
+                                    data-gotoimage="${el.picture}">
+                                        <use href=${state.likes.isLiked(state.likes.songLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+                                    </svg>
+                            </button>
+                    </figcaption>
+                </figure>
+            </a>
+            </li>`
+            ).join('')}
+        </ul>
+    </div>`;      
+    }
 
     
-    elements.searchContent.insertAdjacentHTML('beforeend', markup);
+    elements.musicContainer.insertAdjacentHTML('beforeend', markup);
 }
 

@@ -114,7 +114,7 @@
           .music__love__tracks{
             right: -33px;
             width: fit-content;
-            top: 12px;
+            top: 50%;
             position: relative;
             border: none;
             cursor: pointer;

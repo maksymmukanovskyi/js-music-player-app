@@ -1,0 +1,38 @@
+.artist-card__img__love{
+    display: inline-block;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.songs-item__discription__love{
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    border-bottom: 1px solid #3d3d3d;
+    margin-bottom: 10px;
+}
+.songs-item__music-name__love{
+    left: 71px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    top: -46px;
+    font-size: 20px;
+    color: #fff;
+}
+.love__title{
+    position: relative;
+    display: block;
+    bottom: 0;
+    left: 16%;
+    color: #fff;
+    /* font-weight: 700; */
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    width: 60%;
+    /* line-height: 1.95; */
+    text-align: center;
+    margin: 0 0 0 0;
+}

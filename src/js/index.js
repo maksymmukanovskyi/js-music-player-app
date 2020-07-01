@@ -354,13 +354,15 @@ const controlLikesNavigationButtons = type => {
     searchView.clearTitle();
     window.pageYOffset;
     renderLoader(elements.mainContainer);
-    if(type == 'artist'){
+
+    if (type == 'artist') {
         likeViews.renderFavourite(state.likes.artistLikes, type);
-    } else if (type == 'albums'){
+      } else if (type == 'albums') {
         likeViews.renderFavourite(state.likes.albumLikes, type);
-    } else if (type == 'songs'){
+      } else if (type == 'songs') {
         likeViews.renderFavourite(state.likes.songLikes, type);
-    }
+      } 
+
     clearLoader();
 
 
@@ -369,6 +371,6 @@ const controlLikesNavigationButtons = type => {
 
 elements.likesNavigation.addEventListener('click', e => {
 let target = e.target.closest('.sub-menu__link').textContent.split(' ')[0].toLowerCase();
-controlLikesNavigationButtons(target);
+controlLikesNavigationButtons(target.trim());
 })
 
