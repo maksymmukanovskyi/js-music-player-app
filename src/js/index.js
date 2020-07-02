@@ -6,7 +6,7 @@ import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
 import * as likeViews from './views/likeViews';
-import {elements, renderLoader, clearLoader, elementString, clearTabs} from './views/base';
+import {elements, renderLoader, clearLoader, elementString, clearTabs, setActiveTab} from './views/base';
 
  export const state = {};
  
@@ -354,6 +354,8 @@ const controlLikesNavigationButtons = type => {
     searchView.clearTitle();
     window.pageYOffset;
     renderLoader(elements.mainContainer);
+    state.search.activeTab = type;
+    setActiveTab(type);
 
     if (type == 'artist') {
         likeViews.renderFavourite(state.likes.artistLikes, type);
@@ -371,6 +373,7 @@ const controlLikesNavigationButtons = type => {
 
 elements.likesNavigation.addEventListener('click', e => {
 let target = e.target.closest('.sub-menu__link').textContent.split(' ')[0].toLowerCase();
+clearTabs();
 controlLikesNavigationButtons(target.trim());
 })
 

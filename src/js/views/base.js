@@ -32,6 +32,15 @@ export const clearTabs = () => {
   tabs.forEach(el => el.classList.remove('active'))
   return tabs;
 }
+export const setActiveTab = (type) => {
+  let tabs = document.querySelectorAll('.chart-list__item');
+  tabs.forEach(el => {
+    if(el.textContent.toLowerCase() == type){
+      el.classList.add('active')
+    }
+  })
+  return tabs;
+}
 
 export const limitString = (string , limit = 15) => {
   const newString = [];
