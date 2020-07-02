@@ -320,7 +320,9 @@ const controlLikes = (target) => {
 
     }
 
-elements.musicMainBox.addEventListener('click', e => {
+elements.mainContainer.addEventListener('click', e => {
+    console.log('works')
+
     if(e.target.matches('.header__likes')){
         controlLikes(e.target);
     }else if(e.target.nodeName == 'use'){

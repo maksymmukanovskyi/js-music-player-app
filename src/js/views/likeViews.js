@@ -24,7 +24,13 @@ export const renderFavourite = (music, type) => {
         <ul class="playlist">
         ${music.map(el => 
             `<li class="songs-item">
-            
+            <button class="music__love__tracks">
+            <svg class="header__likes" data-gotoid="${el.id}"
+            data-gototitle="${el.title}"
+            data-gotoimage="${el.picture}">
+                <use href=${state.likes.isLiked(state.likes.artistLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+            </svg>
+    </button>
                 <a class="songs-link" href="#${el.id}">
                 <figure class="songs-item__figure">
                 
@@ -33,13 +39,7 @@ export const renderFavourite = (music, type) => {
                          <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
                              <p class="songs-item__music-name__love">${limitString(el.title)}</p>
                         </div>
-                        <button class="music__love__tracks">
-                                    <svg class="track__likes" data-gotoid="${el.id}"
-                                    data-gototitle="${el.title}"
-                                    data-gotoimage="${el.picture}">
-                                        <use href=${state.likes.isLiked(state.likes.artistLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
-                                    </svg>
-                            </button>
+                       
                     </figcaption>
                 </figure>
             </a>
@@ -54,7 +54,13 @@ export const renderFavourite = (music, type) => {
         <ul class="playlist">
         ${music.map(el => 
             `<li class="songs-item">
-            
+            <button class="music__love__tracks">
+                                    <svg class="header__likes" data-gotoid="${el.id}"
+                                    data-gototitle="${el.title}"
+                                    data-gotoimage="${el.picture}">
+                                        <use href=${state.likes.isLiked(state.likes.albumLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+                                    </svg>
+                            </button>
                 <a class="songs-link" href="#${el.id}">
                 <figure class="songs-item__figure">
                 
@@ -63,13 +69,7 @@ export const renderFavourite = (music, type) => {
                          <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
                              <p class="songs-item__music-name__love">${limitString(el.title)}</p>
                         </div>
-                        <button class="music__love__tracks">
-                                    <svg class="track__likes" data-gotoid="${el.id}"
-                                    data-gototitle="${el.title}"
-                                    data-gotoimage="${el.picture}">
-                                        <use href=${state.likes.isLiked(state.likes.albumLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
-                                    </svg>
-                            </button>
+                        
                     </figcaption>
                 </figure>
             </a>
@@ -84,22 +84,24 @@ export const renderFavourite = (music, type) => {
         <ul class="playlist">
         ${music.map(el => 
             `<li class="songs-item">
-            
+            <button class="music__love__tracks">
+            <svg class="track__likes" data-gotoid="${el.id}"
+            data-gototitle="${el.title}"
+            data-gotoimage="${el.picture}">
+                <use href=${state.likes.isLiked(state.likes.songLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
+            </svg>
+    </button>
                 <a class="songs-link" href="#${el.id}">
                 <figure class="songs-item__figure">
-                
+                <button class="play">PREVIEW</button>
+         <button class="play">YOUTUBE</button>
                     <figcaption class="songs-item__discription__love" >
                          <div >
                          <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
                              <p class="songs-item__music-name__love">${limitString(el.title)}</p>
+                             
                         </div>
-                        <button class="music__love__tracks">
-                                    <svg class="track__likes" data-gotoid="${el.id}"
-                                    data-gototitle="${el.title}"
-                                    data-gotoimage="${el.picture}">
-                                        <use href=${state.likes.isLiked(state.likes.songLikes, el.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
-                                    </svg>
-                            </button>
+                       
                     </figcaption>
                 </figure>
             </a>

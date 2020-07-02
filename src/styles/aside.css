@@ -33,9 +33,9 @@
     color: var(--white);
 }
 
-/* .sub-menu {
+.sub-menu {
     display: none;
-} */
+}
 
 .menu__link, .sub-menu__link {
     color: var(--white);

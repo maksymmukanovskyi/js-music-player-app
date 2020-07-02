@@ -112,9 +112,9 @@
               filter: drop-shadow(0px 1px 1px #000000e7);
           }
           .music__love__tracks{
-            right: -33px;
+            right: 5px;
             width: fit-content;
-            top: 50%;
+            top: 50px;
             position: relative;
             border: none;
             cursor: pointer;
