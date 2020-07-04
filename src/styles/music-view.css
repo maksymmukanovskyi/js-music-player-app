@@ -77,7 +77,7 @@
         .info {
           color: #fff;
           font-size: 23px;
-          text-transform: uppercase;
+          /* text-transform: uppercase; */
           position: relative;
           display: block;
           bottom: 0;

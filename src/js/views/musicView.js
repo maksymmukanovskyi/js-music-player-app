@@ -65,7 +65,7 @@ export const renderTrack = (music) => {
                 <h2 class="album__title">${limitString(music.artistName, 31)}</h2>
 
                 <div class="info">
-                    <p class="album__info-data">Preview: ${music.preview}</p>
+                    <p class="album__info-data">Preview: ${music.preview.toLowerCase()}</p>
                     <p class="album__info-data">Time: ${music.time}</p>
                     <p class="album__info-data">Release: ${music.releaseDate}</p>
                     <p class="album__info-data"><a href=${music.originalLink}>Get more info</a></p>

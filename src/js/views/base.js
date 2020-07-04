@@ -1,5 +1,6 @@
 import {state} from '../index';
 
+
 export const elements = {
     logoSign: document.querySelector('.logo'),
     homeBtn: document.querySelector('.menu__home'),
@@ -17,6 +18,21 @@ export const elements = {
     albumsLikeCount: document.querySelector('.sub-menu__albums__likes'),
     songsLikeCount: document.querySelector('.sub-menu__songs__likes'),
     likesNavigation: document.querySelector('.sub-menu'),
+
+// player audio
+audioPlayer: document.querySelector('.green-audio-player'),
+playPause: document.querySelector('#playPause'),
+playpauseBtn: document.querySelector('.play-pause-btn'),
+loading: document.querySelector('.loading'),
+progress: document.querySelector('.progress'),
+sliders: document.querySelectorAll('.slider'),
+volumeBtn: document.querySelector('.volume-btn'),
+volumeControls: document.querySelector('.volume-controls'),
+volumeProgress: document.querySelector('.slider .progress'),
+player: document.querySelector('audio'),
+currentTime: document.querySelector('.current-time'),
+totalTime: document.querySelector('.total-time'),
+speaker: document.querySelector('#speaker'),
 }
 
 
