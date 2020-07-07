@@ -7,6 +7,7 @@ import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
 import * as likeViews from './views/likeViews';
 import * as playerView from './views/playerView';
+import {inRange, getCoefficient} from  './views/playerView';
 import {elements, renderLoader, clearLoader, elementString, clearTabs, setActiveTab} from './views/base';
 
  export const state = {};
@@ -144,7 +145,7 @@ elements.listType.addEventListener('click', e => {
     headerFiltering(e);
 })
 
-window.addEventListener('load', controlSearch)
+// window.addEventListener('load', controlSearch)
 
 elements.logoSign.addEventListener('click', () => {
     let tab = clearTabs();
@@ -322,7 +323,6 @@ const controlLikes = (target) => {
     }
 
 elements.mainContainer.addEventListener('click', e => {
-    console.log('works')
 
     if(e.target.matches('.header__likes')){
         controlLikes(e.target);
@@ -381,22 +381,30 @@ controlLikesNavigationButtons(target.trim());
 })
 
 ///////////////////////PLAY TRACK CONTROLLER//////////////////////////////////
+export let currentlyDragged = null;
+export const rewind = event => {
+    if(inRange(event)) {
+      elements.player.currentTime = elements.player.duration * getCoefficient(event);
+    }
+  }
 
 window.addEventListener('mousedown', function(event) {
   
     if(!playerView.isDraggable(event.target)) return false;
-    
-    playerView.currentlyDragged = event.target;
+
+    currentlyDragged = event.target;
+
     let handleMethod = currentlyDragged.dataset.method;
-    
+
     this.addEventListener('mousemove', window[handleMethod], false);
+    console.log('this', window[handleMethod]);
   
     window.addEventListener('mouseup', () => {
-      currentlyDragged = false;
+        currentlyDragged = false;
       window.removeEventListener('mousemove', window[handleMethod], false);
     }, false);  
   });
-  console.log('plaayer', elements.player)
+
   elements.playpauseBtn.addEventListener('click', playerView.togglePlay);
   elements.player.addEventListener('timeupdate', playerView.updateProgress);
   elements.player.addEventListener('volumechange', playerView.updateVolume);

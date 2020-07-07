@@ -1,8 +1,9 @@
 import {elements} from './base';
+import {currentlyDragged} from '../index';
 
 
 const draggableClasses = ['pin'];
-export const currentlyDragged = null;
+
 
 
 export const isDraggable = el =>{
@@ -12,6 +13,7 @@ export const isDraggable = el =>{
     if(classes.indexOf(draggable) !== -1)
       canDrag = true;
   })
+
   return canDrag;
 }
 
@@ -52,6 +54,7 @@ export const updateVolume = () => {
 
 export const getRangeBox = event => {
   let rangeBox = event.target;
+  console.log('opa', currentlyDragged)
   let el = currentlyDragged;
   if(event.type == 'click' && isDraggable(event.target)) {
     rangeBox = event.target.parentElement.parentElement;
@@ -82,11 +85,7 @@ export const getCoefficient = event => {
   return K;
 }
 
-export const rewind = event => {
-  if(inRange(event)) {
-    elements.player.currentTime = elements.player.duration * getCoefficient(event);
-  }
-}
+
 
 export const changeVolume = event => {
   if(inRange(event)) {
