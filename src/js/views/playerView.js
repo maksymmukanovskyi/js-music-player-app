@@ -54,7 +54,6 @@ export const updateVolume = () => {
 
 export const getRangeBox = event => {
   let rangeBox = event.target;
-  console.log('opa', currentlyDragged)
   let el = currentlyDragged;
   if(event.type == 'click' && isDraggable(event.target)) {
     rangeBox = event.target.parentElement.parentElement;

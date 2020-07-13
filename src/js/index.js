@@ -336,6 +336,11 @@ elements.mainContainer.addEventListener('click', e => {
 window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
+    window.rewind = event => {
+        if(inRange(event)) {
+          elements.player.currentTime = elements.player.duration * getCoefficient(event);
+        }
+      }
 
     likeViews.toggleLikesCount(
         [elements.artistsLikeCount,
@@ -382,11 +387,6 @@ controlLikesNavigationButtons(target.trim());
 
 ///////////////////////PLAY TRACK CONTROLLER//////////////////////////////////
 export let currentlyDragged = null;
-export const rewind = event => {
-    if(inRange(event)) {
-      elements.player.currentTime = elements.player.duration * getCoefficient(event);
-    }
-  }
 
 window.addEventListener('mousedown', function(event) {
   
@@ -396,8 +396,12 @@ window.addEventListener('mousedown', function(event) {
 
     let handleMethod = currentlyDragged.dataset.method;
 
+
     this.addEventListener('mousemove', window[handleMethod], false);
-    console.log('this', window[handleMethod]);
+    console.log(window);
+
+
+
   
     window.addEventListener('mouseup', () => {
         currentlyDragged = false;
