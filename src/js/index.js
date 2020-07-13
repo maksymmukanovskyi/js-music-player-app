@@ -337,6 +337,7 @@ window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
     window.rewind = event => {
+        console.log(inRange(event))
         if(inRange(event)) {
           elements.player.currentTime = elements.player.duration * getCoefficient(event);
         }
@@ -398,7 +399,7 @@ window.addEventListener('mousedown', function(event) {
 
 
     this.addEventListener('mousemove', window[handleMethod], false);
-    console.log(window);
+    console.log(window[handleMethod])
 
 
 
@@ -429,8 +430,16 @@ window.addEventListener('mousedown', function(event) {
   window.addEventListener('resize', playerView.directionAware);
   
   elements.sliders.forEach(slider => {
+      
     let pin = slider.querySelector('.pin');
-    slider.addEventListener('click', window[pin.dataset.method]);
+    // slider.addEventListener('click', window[pin.dataset.method]);
+
+    slider.addEventListener('click', handler);
+   function handler(e){
+       window[pin.dataset.method](e)
+   }
+
+
   });
   
   playerView.directionAware();

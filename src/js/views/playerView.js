@@ -69,7 +69,7 @@ export const getCoefficient = event => {
   let rect = slider.getBoundingClientRect();
   let K = 0;
   if(slider.dataset.direction == 'horizontal') {
-    
+    console.log('opa')
     let offsetX = event.clientX - slider.offsetLeft;
     let width = slider.clientWidth;
     K = offsetX / width;    
