@@ -141,7 +141,7 @@ color: var(--white);
     border-radius: 7px;
     position: absolute;
     left: -3px;
-    bottom: 52px;
+    top: -140px;
     flex-direction: column;
     align-items: center;
     display: flex;
@@ -163,6 +163,21 @@ color: var(--white);
   .audio.green-audio-player .volume .volume-controls .slider .progress .pin {
     left: -5px;
     top: -8px;
+  }
+  .total-time{
+    position: absolute;
+    top: -30%;
+    right: 39%;
+  }
+  .current-time{
+    position: absolute;
+    top: -30%;
+    left: 36%;
+  }
+  .current-title{
+    position: absolute;
+    top: -30%;
+    left: 41%;
   }
   
   

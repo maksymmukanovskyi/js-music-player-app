@@ -28,13 +28,14 @@ progress: document.querySelector('.progress'),
 sliders: document.querySelectorAll('.slider'),
 volumeBtn: document.querySelector('.volume-btn'),
 volumeControls: document.querySelector('.volume-controls'),
-volumeProgress: document.querySelector('.slider .progress'),
+volumeProgress: document.querySelector('.volume-progress'),
 player: document.querySelector('audio'),
 currentTime: document.querySelector('.current-time'),
 totalTime: document.querySelector('.total-time'),
 speaker: document.querySelector('#speaker'),
 }
-
+console.log(elements.progress);
+console.log(elements.volumeProgress);
 
 export const timeConvert = num =>{ 
   let min = Math.floor(num / 60);

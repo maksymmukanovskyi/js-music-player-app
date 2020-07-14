@@ -42,6 +42,7 @@ export const updateProgress = () => {
 }
 
 export const updateVolume = () => {
+  console.log(elements.volumeProgress.style.height)
     elements.volumeProgress.style.height = elements.player.volume * 100 + '%';
   if(elements.player.volume >= 0.5) {
     elements.speaker.attributes.d.value = 'M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z';  
@@ -69,7 +70,7 @@ export const getCoefficient = event => {
   let rect = slider.getBoundingClientRect();
   let K = 0;
   if(slider.dataset.direction == 'horizontal') {
-    console.log('opa')
+
     let offsetX = event.clientX - slider.offsetLeft;
     let width = slider.clientWidth;
     K = offsetX / width;    
@@ -86,11 +87,7 @@ export const getCoefficient = event => {
 
 
 
-export const changeVolume = event => {
-  if(inRange(event)) {
-    elements.player.volume = getCoefficient(event);
-  }
-}
+
 
 export const formatTime = time => {
   let min = Math.floor(time / 60);

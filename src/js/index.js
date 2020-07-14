@@ -336,12 +336,18 @@ elements.mainContainer.addEventListener('click', e => {
 window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
+
     window.rewind = event => {
-        console.log(inRange(event))
         if(inRange(event)) {
           elements.player.currentTime = elements.player.duration * getCoefficient(event);
         }
-      }
+      };
+      window.changeVolume = event => {
+
+        if(inRange(event)) {
+          elements.player.volume = getCoefficient(event);
+        }
+      };
 
     likeViews.toggleLikesCount(
         [elements.artistsLikeCount,
@@ -399,11 +405,6 @@ window.addEventListener('mousedown', function(event) {
 
 
     this.addEventListener('mousemove', window[handleMethod], false);
-    console.log(window[handleMethod])
-
-
-
-  
     window.addEventListener('mouseup', () => {
         currentlyDragged = false;
       window.removeEventListener('mousemove', window[handleMethod], false);
@@ -413,6 +414,8 @@ window.addEventListener('mousedown', function(event) {
   elements.playpauseBtn.addEventListener('click', playerView.togglePlay);
   elements.player.addEventListener('timeupdate', playerView.updateProgress);
   elements.player.addEventListener('volumechange', playerView.updateVolume);
+console.log(elements.volumeProgress.style.height);
+
   elements.player.addEventListener('loadedmetadata', () => {
       elements.totalTime.textContent = playerView.formatTime(elements.player.duration);
   });
@@ -423,23 +426,30 @@ window.addEventListener('mousedown', function(event) {
   });
   
   elements.volumeBtn.addEventListener('click', () => {
+      console.log(elements.volumeControls);
     elements.volumeBtn.classList.toggle('open');
     elements.volumeControls.classList.toggle('hidden');
   })
   
-  window.addEventListener('resize', playerView.directionAware);
+//   window.addEventListener('resize', playerView.directionAware);
   
   elements.sliders.forEach(slider => {
       
     let pin = slider.querySelector('.pin');
+    // let callFunction = pin.dataset.method;
     // slider.addEventListener('click', window[pin.dataset.method]);
+    // slider.addEventListener('click', dragHandler);
+    // function dragHandler(e){
+    //     console.log(callFunction);
 
-    slider.addEventListener('click', handler);
-   function handler(e){
+    //     console.log(window[callFunction]);
+
+    // }
+
+    slider.addEventListener('click', clickhandler);
+   function clickhandler(e){
        window[pin.dataset.method](e)
    }
-
-
   });
   
-  playerView.directionAware();
+//   playerView.directionAware();
