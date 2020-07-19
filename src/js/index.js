@@ -145,7 +145,7 @@ elements.listType.addEventListener('click', e => {
     headerFiltering(e);
 })
 
-// window.addEventListener('load', controlSearch)
+window.addEventListener('load', controlSearch);
 
 elements.logoSign.addEventListener('click', () => {
     let tab = clearTabs();
@@ -393,63 +393,55 @@ controlLikesNavigationButtons(target.trim());
 })
 
 ///////////////////////PLAY TRACK CONTROLLER//////////////////////////////////
+
+    window.addEventListener('mousedown', function(event) {
+        if(!playerView.isDraggable(event.target)) return false;
+        currentlyDragged = event.target;
+        let handleMethod = currentlyDragged.dataset.method;
+        this.addEventListener('mousemove', window[handleMethod], false);
+        window.addEventListener('mouseup', () => {
+            currentlyDragged = false;
+          window.removeEventListener('mousemove', window[handleMethod], false);
+        }, false);  
+      });
+    
+      elements.playpauseBtn.addEventListener('click', playerView.togglePlay);
+      elements.player.addEventListener('timeupdate', playerView.updateProgress);
+      elements.player.addEventListener('volumechange', playerView.updateVolume);
+    
+      elements.player.addEventListener('loadedmetadata', () => {
+          elements.totalTime.textContent = playerView.formatTime(elements.player.duration);
+      });
+      elements.player.addEventListener('canplay', playerView.makePlay);
+      elements.player.addEventListener('ended', function(){
+        elements.playPause.attributes.d.value = "M18 12L0 24V0";
+        elements.player.currentTime = 0;
+      });
+      
+      elements.volumeBtn.addEventListener('click', () => {
+        elements.volumeBtn.classList.toggle('open');
+        elements.volumeControls.classList.toggle('hidden');
+      })
+      
+    //   window.addEventListener('resize', playerView.directionAware);
+      elements.sliders.forEach(slider => {
+        let pin = slider.querySelector('.pin');
+        // slider.addEventListener('click', window[pin.dataset.method]);
+        slider.addEventListener('click', clickhandler);
+       function clickhandler(e){
+           window[pin.dataset.method](e)
+       }
+      });
 export let currentlyDragged = null;
 
-window.addEventListener('mousedown', function(event) {
-  
-    if(!playerView.isDraggable(event.target)) return false;
-
-    currentlyDragged = event.target;
-
-    let handleMethod = currentlyDragged.dataset.method;
-
-
-    this.addEventListener('mousemove', window[handleMethod], false);
-    window.addEventListener('mouseup', () => {
-        currentlyDragged = false;
-      window.removeEventListener('mousemove', window[handleMethod], false);
-    }, false);  
-  });
-
-  elements.playpauseBtn.addEventListener('click', playerView.togglePlay);
-  elements.player.addEventListener('timeupdate', playerView.updateProgress);
-  elements.player.addEventListener('volumechange', playerView.updateVolume);
-console.log(elements.volumeProgress.style.height);
-
-  elements.player.addEventListener('loadedmetadata', () => {
-      elements.totalTime.textContent = playerView.formatTime(elements.player.duration);
-  });
-  elements.player.addEventListener('canplay', playerView.makePlay);
-  elements.player.addEventListener('ended', function(){
-    elements.playPause.attributes.d.value = "M18 12L0 24V0";
-    elements.player.currentTime = 0;
-  });
-  
-  elements.volumeBtn.addEventListener('click', () => {
-      console.log(elements.volumeControls);
-    elements.volumeBtn.classList.toggle('open');
-    elements.volumeControls.classList.toggle('hidden');
-  })
-  
-//   window.addEventListener('resize', playerView.directionAware);
-  
-  elements.sliders.forEach(slider => {
-      
-    let pin = slider.querySelector('.pin');
-    // let callFunction = pin.dataset.method;
-    // slider.addEventListener('click', window[pin.dataset.method]);
-    // slider.addEventListener('click', dragHandler);
-    // function dragHandler(e){
-    //     console.log(callFunction);
-
-    //     console.log(window[callFunction]);
-
-    // }
-
-    slider.addEventListener('click', clickhandler);
-   function clickhandler(e){
-       window[pin.dataset.method](e)
-   }
-  });
   
 //   playerView.directionAware();
+  elements.mainContainer.addEventListener('click', (e) => {
+    if(!e.target.matches('.preview-play')) return;
+    state.previewTriggered = true;
+    console.log(e)
+    playerView.renderMusicInterface(e);
+  });
+
+
+  

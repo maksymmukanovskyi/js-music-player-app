@@ -18,6 +18,7 @@ export const elements = {
     albumsLikeCount: document.querySelector('.sub-menu__albums__likes'),
     songsLikeCount: document.querySelector('.sub-menu__songs__likes'),
     likesNavigation: document.querySelector('.sub-menu'),
+    audioInterFace: document.querySelector('.now-playing'),
 
 // player audio
 audioPlayer: document.querySelector('.green-audio-player'),
@@ -33,9 +34,9 @@ player: document.querySelector('audio'),
 currentTime: document.querySelector('.current-time'),
 totalTime: document.querySelector('.total-time'),
 speaker: document.querySelector('#speaker'),
+previewPlay: document.querySelector('.preview-play'),
+youtubePlay: document.querySelector('.youtube-play'),
 }
-console.log(elements.progress);
-console.log(elements.volumeProgress);
 
 export const timeConvert = num =>{ 
   let min = Math.floor(num / 60);
@@ -87,10 +88,11 @@ export const musicPlayList = (music, pics, activeTab) =>{
                             <use href=${state.likes.isLiked(state.likes.songLikes, music.id)?"./sprite.svg#icon-heart":"./sprite.svg#icon-heart-outlined"}></use>
                         </svg>
                 </button>
-    <a class="songs-link" href="#${music.id}" data-link="${music.preview}">
+                <button class="preview-play" data-link="${music.preview}">PREVIEW</button>
+         <button class="youtube-play">YOUTUBE</button>
+    <a class="songs-link" href="#${music.id}">
     <figure class="songs-item__figure">
-         <button class="play">PREVIEW</button>
-         <button class="play">YOUTUBE</button>
+         
 
         <figcaption class="songs-item__discription" >
              <div class="discription__left-part">

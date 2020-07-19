@@ -21,10 +21,10 @@
     justify-content: space-between;
 
 }
-.prev, .play, .next{
-    height: 25px;
+.prev, .preview-play, .youtube-play, .next{
+    height: 30px;
     width: 63px;
-    margin: 10px 10px;
+    margin: 0 10px;
     border: none;
     color: rgb(75, 75, 75);
     text-align: center;
@@ -34,7 +34,7 @@
     font-weight: bold;
 }
 
-.prev:hover, .play:hover, .next:hover{
+.prev:hover, .preview-play:hover, .youtube-play:hover, .next:hover{
 background-color:var(--red);
 color: var(--white);
 }

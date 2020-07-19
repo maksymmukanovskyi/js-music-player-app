@@ -93,8 +93,8 @@ export const renderFavourite = (music, type) => {
     </button>
                 <a class="songs-link" href="#${el.id}">
                 <figure class="songs-item__figure">
-                <button class="play">PREVIEW</button>
-         <button class="play">YOUTUBE</button>
+                <button class="preview-play">PREVIEW</button>
+         <button class="youtube-play">YOUTUBE</button>
                     <figcaption class="songs-item__discription__love" >
                          <div >
                          <img src="${el.picture}" alt="albums-picture" class="artist-card__img__love">
