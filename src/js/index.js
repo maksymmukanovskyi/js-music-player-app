@@ -393,7 +393,6 @@ controlLikesNavigationButtons(target.trim());
 })
 
 ///////////////////////PLAY TRACK CONTROLLER//////////////////////////////////
-
     window.addEventListener('mousedown', function(event) {
         if(!playerView.isDraggable(event.target)) return false;
         currentlyDragged = event.target;
@@ -404,8 +403,10 @@ controlLikesNavigationButtons(target.trim());
           window.removeEventListener('mousemove', window[handleMethod], false);
         }, false);  
       });
+
     
       elements.playpauseBtn.addEventListener('click', playerView.togglePlay);
+    
       elements.player.addEventListener('timeupdate', playerView.updateProgress);
       elements.player.addEventListener('volumechange', playerView.updateVolume);
     
@@ -432,15 +433,19 @@ controlLikesNavigationButtons(target.trim());
            window[pin.dataset.method](e)
        }
       });
-export let currentlyDragged = null;
+    export let currentlyDragged = null;
 
   
 //   playerView.directionAware();
   elements.mainContainer.addEventListener('click', (e) => {
-    if(!e.target.matches('.preview-play')) return;
-    state.previewTriggered = true;
-    console.log(e)
-    playerView.renderMusicInterface(e);
+    if(e.target.matches('.preview-play')){
+        playerView.activateMusicInterface(e);
+    }else if(e.target.matches('.preview-close')){
+        playerView.shotDownMusicInterface(e);
+    }
+    // state.previewTriggered = true;
+
+
   });
 
 
