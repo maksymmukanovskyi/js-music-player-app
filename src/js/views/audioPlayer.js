@@ -21,14 +21,15 @@ let nowPlaying = document.querySelector('.now-playing');
 let draggableClasses = ['pin'];
 let currentlyDragged = null;
 
+
 window.addEventListener('mousedown', function(event) {
   
   if(!isDraggable(event.target)) return false;
   
   currentlyDragged = event.target;
   let handleMethod = currentlyDragged.dataset.method;
+  
 
-  console.log('this', [handleMethod]);
   this.addEventListener('mousemove', window[handleMethod], false);
 
 
@@ -138,17 +139,17 @@ function getCoefficient(event) {
   return K;
 }
 
-function rewind(event) {
-  if(inRange(event)) {
-    player.currentTime = player.duration * getCoefficient(event);
-  }
-}
+ window.rewind = event => {
+        if(inRange(event)) {
+          player.currentTime = player.duration * getCoefficient(event);
+        }
+      };
 
-function changeVolume(event) {
-  if(inRange(event)) {
-    player.volume = getCoefficient(event);
-  }
-}
+window.changeVolume = event => {
+        if(inRange(event)) {
+          player.volume = getCoefficient(event);
+        }
+      };
 
 function formatTime(time) {
   var min = Math.floor(time / 60);
