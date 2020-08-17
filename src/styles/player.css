@@ -1,5 +1,5 @@
 .now-playing {
-  /* display: none; */
+  display: none;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.52);
     box-shadow: 0.625rem 0 0.625rem 0 rgba(0, 0, 0, 0.15);

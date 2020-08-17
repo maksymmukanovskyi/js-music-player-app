@@ -1,6 +1,7 @@
 import {elements, musicPlayList, limitString} from './base';
 import {state} from '../index';
 
+
 export const renderArtist = (music) => {
     const markup = `
     <figure class="fig">

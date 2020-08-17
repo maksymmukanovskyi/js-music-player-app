@@ -7,11 +7,11 @@ import * as searchView from './views/searchView';
 import * as musicView from './views/musicView';
 import * as likeViews from './views/likeViews';
 import * as playerView from './views/playerView';
-import {inRange, getCoefficient} from  './views/playerView';
-import {elements, renderLoader, clearLoader, elementString, clearTabs, setActiveTab} from './views/base';
+import {togglePlay, previewTriggered, togglePreviewTriggered} from  './views/audioPlayer';
+import {previewPlayerElements, elements, renderLoader, clearLoader, elementString, clearTabs, setActiveTab} from './views/base';
 
  export const state = {};
- 
+ console.log('state2', state);
 
 
 ///////////////////////////    SEARCH CONTROLLER   ////////////////////////
@@ -337,17 +337,17 @@ window.addEventListener('load', () => {
     state.likes = new Likes();
     state.likes.readStorageData();
 
-    window.rewind = event => {
-        if(inRange(event)) {
-          elements.player.currentTime = elements.player.duration * getCoefficient(event);
-        }
-      };
-      window.changeVolume = event => {
+    // window.rewind = event => {
+    //     if(inRange(event)) {
+    //       elements.player.currentTime = elements.player.duration * getCoefficient(event);
+    //     }
+    //   };
+    //   window.changeVolume = event => {
 
-        if(inRange(event)) {
-          elements.player.volume = getCoefficient(event);
-        }
-      };
+    //     if(inRange(event)) {
+    //       elements.player.volume = getCoefficient(event);
+    //     }
+    //   };
 
     likeViews.toggleLikesCount(
         [elements.artistsLikeCount,
@@ -394,23 +394,9 @@ controlLikesNavigationButtons(target.trim());
 
 ///////////////////////PLAY TRACK CONTROLLER//////////////////////////////////
     
-    export let currentlyDragged = null;
 
-  
-//   playerView.directionAware();
-  elements.mainContainer.addEventListener('click', (e) => {
-    if(e.target.matches('.preview-play') && !state.previewTriggered){
-        state.previewTriggered = true;
-        playerView.renderPreviewPlayer(e);
-    }else if(e.target.matches('.preview-close') && state.previewTriggered){
-        playerView.clearPreviewPlayer();
-        state.previewTriggered = false;
+ 
 
-    }
-    // state.previewTriggered = true;
-
-
-  });
 
 
   
