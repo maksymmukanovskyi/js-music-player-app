@@ -16,7 +16,7 @@ let currentTime = audioPlayer.querySelector('.current-time');
 let totalTime = audioPlayer.querySelector('.total-time');
 let speaker = audioPlayer.querySelector('#speaker');
 let nowPlaying = document.querySelector('.now-playing');
-// let musicSource = document.querySelector('source');
+let musicCurrentTitle = document.querySelector('.current-title');
 
 let draggableClasses = ['pin'];
 let currentlyDragged = null;
@@ -193,6 +193,8 @@ elements.mainContainer.addEventListener('click', (e) => {
   if(e.target.matches('.preview-play')){
     let markup = `<source src=${e.target.dataset.link} type="audio/mpeg">`;
     player.innerHTML = markup;
+    musicCurrentTitle.textContent = `Preview of: ${e.target.dataset.title}`;
+    musicCurrentTitle.style.animation = 'marquee-container 15s linear';
     nowPlaying.style.display = 'block';
     player.load();
     togglePlay()
